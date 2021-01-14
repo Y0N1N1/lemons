@@ -1,5 +1,6 @@
 <img src="https://github.com/Y0N1N1/lemons/blob/main/docs/assets/images/lemonslogo.png?raw=true" height="200" />
-###lemons
+
+#lemons
 
 lemons is a python library for the non-normies of the ml community. You can help and use the code at any time under the mit license, all helps apreciated! Lemons a messy / amateur's try to implementing simple datascience projects because we don't like the existing modules. 
 ## versions and all that
