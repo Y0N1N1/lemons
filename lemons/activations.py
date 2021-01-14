@@ -23,110 +23,130 @@ Activation ->
   softmax
 """
 class Activation:
-  def sigmoid(value):
-    if value > 0:
-      res = 1 / (1 + math.exp(-value))
-      return res
-    else:
-      res = -(1 / (1 + math.exp(value)))
-      return res
+  class sigmoid:
+    def comp(value):
+      if value > 0:
+        res = 1 / (1 + math.exp(-value))
+        return res
+      else:
+        res = -(1 / (1 + math.exp(value)))
+        return res
 
-  def sigmoid_zero_to_one(value):
-    if value > 0:
-      res = 1 / (1 + math.exp(-value))
-      return res
-    else:
-      return 0
+  class sigmoid_zero_to_one:
+    def comp(value):
+      if value > 0:
+        res = 1 / (1 + math.exp(-value))
+        return res
+      else:
+        return 0
 
-  def binary_step(value, threshold_value):
-    if value > threshold_value:
-      return 1
-    if value == threshold_value:
-      return 1
-    else:
-      return 0
+  class binary_step:
+    def __init__(self, threshold_value):
+      self.threshold_value = threshold_value
+     
+    def comp(self, value):
+      if value > self.threshold_value:
+        return 1
+      if value == self.threshold_value:
+        return 1
+      else:
+        return 0
 
-  def relu(value):
-    if value > 0:
-      return value
-    else: 
-      return 0
-
-  def leaky_relu(value):
-    if value > 0:
-      return value
-    else: 
-      return 0.01 * value
-
-  def tanh(value):
-    res = (2 / (1 + (math.pow(__functions__.__constants__.euler_constant, (-2 * value))))) -1
-    return res
-
-  def elu(value):
-    if value > 0:
-      return value
-    else: 
-      return -1
+  class relu:
+    def comp(value):
+      if value > 0:
+        return value
+      else: 
+        return 0
   
-  def hard_sigmoid(value):
-    if value > 1:
-      return 1
-    elif value < -1:
-      return -1
-    else: 
-      return value
-
-  def hard_sigmoid_zero_to_one(value):
-    if value > 1:
-      return 1
-    elif value < 0:
-      return -1
-    else: 
-      return value
-
-  def exponential(value):
-    return math.exp(value)
+  class leaky_relu:
+    def comp(value):
+      if value > 0:
+        return value
+      else: 
+        return 0.01 * value
   
-  def indentity(value):
-    return value
+  class tanh:
+    def comp(value):
+      res = (2 / (1 + (math.pow(__functions__.__constants__.euler_constant, (-2 * value))))) -1
+      return res
 
-  def selu(value):
-    if value > 0:
-      return value * 1.05070098 
-    else:
-      return 1.05070098 * 1.67326324 * ((math.exp(value)) -1)
-
-  def softplus(value):
-    return math.log((math.exp(x)) +1)
-
-  def softsign(value):
-    return x / ((abs(x)) + 1)
-
-  def swish(value):
-    if value > 0:
-      res = 1 / (1 + math.exp(-value))
-      return res * value
-    else:
-      res = -(1 / (1 + math.exp(value)))
-      return res * value
+  class elu:
+    def comp(value):
+      if value > 0:
+        return value
+      else: 
+        return -1
   
-  def prelu(value, multiplier):
-    if value > 0:
-      return value
-    else: 
-      return multiplier * value
+  class hard_sigmoid:
+    def comp(value):
+      if value > 1:
+        return 1
+      elif value < -1:
+        return -1
+      else: 
+        return value
 
-  def softmax(vector):
-    res = []
-    def total(vec):
-      vect = []
-      for i in vec:
-        x = math.exp(i)
-        vect.append(x)
-      totalsum = sum(vect)
-      return totalsum
-    tot = total(vector)
-    for i in vector:
-      i = math.exp(i) / tot
-      res.append(i)
-    return res
+  class hard_sigmoid_zero_to_one:
+    def comp(value):
+      if value > 1:
+        return 1
+      elif value < 0:
+        return -1
+      else: 
+        return value
+
+  class exponential:
+    def comp(value):
+      return math.exp(value)
+  
+  class identity:
+    def comp(value):
+      return value
+  
+  class selu:
+    def comp(value):
+      if value > 0:
+        return value * 1.05070098 
+      else:
+        return 1.05070098 * 1.67326324 * ((math.exp(value)) -1)
+
+  class softplus:
+    def comp(value):
+      return math.log((math.exp(x)) +1)
+  
+  class softsign:
+    def comp(value):
+      return x / ((abs(x)) + 1)
+
+  class swish:
+    def comp(value):
+      if value > 0:
+        res = 1 / (1 + math.exp(-value))
+        return res * value
+      else:
+        res = -(1 / (1 + math.exp(value)))
+        return res * value
+  
+  class prelu:
+    def comp(value, multiplier):
+      if value > 0:
+        return value
+      else: 
+        return multiplier * value
+    
+  class softmax:
+    def comp(vector):
+      res = []
+      def total(vec):
+        vect = []
+        for i in vec:
+          x = math.exp(i)
+          vect.append(x)
+        totalsum = sum(vect)
+        return totalsum
+      tot = total(vector)
+      for i in vector:
+        i = math.exp(i) / tot
+        res.append(i)
+      return res
