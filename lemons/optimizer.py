@@ -29,14 +29,29 @@ future ideas ->
 """
 
 class Optimizer:
-  def gradient_descent(old_optimizer, learning_rate, gradient):
-    return (old_optimizer - (learning_rate * gradient))
+  class gradient_descent:
+    # whole training epoch
+    def __init__(self, learning_rate):
+      self.learning_rate = learning_rate
+      
+    def comp(self, old_optimizer, gradient):
+      return (old_optimizer - (self.learning_rate * gradient))
   
-  def sgd(old_optimizer, learning_rate, gradient):
-    return (old_optimizer - (learning_rate * gradient))
+  class sgd:
+    # one sample
+    def __init__(self, learning_rate):
+      self.learning_rate = learning_rate
+      
+    def comp(self, old_optimizer, gradient):
+      return (old_optimizer - (self.learning_rate * gradient))
   
-  def mini_batch_gradient_descent(old_optimizer, learning_rate, gradient):
-    return (old_optimizer - (learning_rate * gradient))
+  class mini_batch_gradient_descent:
+    # one batch
+    def __init__(self, learning_rate):
+      self.learning_rate = learning_rate
+      
+    def comp(self, old_optimizer, gradient):
+      return (old_optimizer - (self.learning_rate * gradient))
 
   def sgd_momentum(old_optimizer, old_velocity, momentum, learning_rate, gradient):
     velocity = (momentum * old_velocity) + (learning_rate * gradient)
