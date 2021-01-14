@@ -1,9 +1,10 @@
 import lemons.nn
+import lemons.loss
 import lemons.error
 import lemons.utils
+import lemons.layer
 import lemons.tensor
-import lemons.optimizers
-import lemons.regression
-import lemons.clustering
-import lemons.activations
-import lemons.loss_functions
+import lemons.metric
+import lemons.blender
+import lemons.optimizer
+import lemons.activation
