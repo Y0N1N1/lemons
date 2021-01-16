@@ -129,11 +129,14 @@ class Activation:
         return res * value
   
   class prelu:
-    def comp(value, multiplier):
+    def __init__(self, multiplier):
+      self.multiplier = multiplier
+      
+    def comp(self, value):
       if value > 0:
         return value
       else: 
-        return multiplier * value
+        return self.multiplier * value
     
   class softmax:
     def comp(vector):
