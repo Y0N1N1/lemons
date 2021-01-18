@@ -1,6 +1,6 @@
 <img src="https://github.com/Y0N1N1/lemons/blob/main/docs/assets/images/lemonslogo.png?raw=true" height="200" />
 
-#lemons
+# lemons
 
 lemons is a python library for the non-normies of the dl community. You can help and use the code at any time under the mit license, all helps apreciated! 
 
@@ -21,3 +21,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 Please respect the licence.
+## to do
+
+- finish backprop
+- turn funcs into classes
+- make train, test, other blender stuff
