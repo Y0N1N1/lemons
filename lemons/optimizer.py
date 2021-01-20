@@ -33,25 +33,31 @@ class Optimizer:
     # whole training epoch
     def __init__(self, learning_rate):
       self.learning_rate = learning_rate
+      self.optimizer = 0
       
-    def comp(self, old_optimizer, gradient):
-      return (old_optimizer - (self.learning_rate * gradient))
+    def comp(self, gradient):
+      self.optimizer = (old_optimizer - (self.learning_rate * gradient))
+      return self.optimizer
   
   class sgd:
     # one sample
     def __init__(self, learning_rate):
       self.learning_rate = learning_rate
+      self.optimizer = 0
       
-    def comp(self, old_optimizer, gradient):
-      return (old_optimizer - (self.learning_rate * gradient))
+    def comp(self, gradient):
+      self.optimizer = (old_optimizer - (self.learning_rate * gradient))
+      return self.optimizer
   
   class mini_batch_gradient_descent:
     # one batch
     def __init__(self, learning_rate):
       self.learning_rate = learning_rate
+      self.optimizer = 0
       
-    def comp(self, old_optimizer, gradient):
-      return (old_optimizer - (self.learning_rate * gradient))
+    def comp(self, gradient):
+      self.optimizer = (old_optimizer - (self.learning_rate * gradient))
+      return self.optimizer
 
   def sgd_momentum(old_optimizer, old_velocity, momentum, learning_rate, gradient):
     velocity = (momentum * old_velocity) + (learning_rate * gradient)
