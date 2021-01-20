@@ -185,3 +185,7 @@ class Activation:
         i = math.exp(i) / tot
         res.append(i)
       return res
+
+#______________________________________________________________________
+ 
+#end
