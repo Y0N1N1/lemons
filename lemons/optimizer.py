@@ -125,20 +125,26 @@ class Optimizer:
    
     def comp(self,  gradient):
         self.opt_list.append(self.optimizer)
-        opt_list_val = sum(opt_list)
+        opt_list_val = sum(self.opt_list)
         opt_list_val += ((gradient)*(gradient))
         self.optimizer = (self.optimizer - ((self.learning_rate / (math.sqrt(self.fudge_factor + opt_list_val)))* gradient))
         return self.optimizer
   
 #______________________________________________________________________
 
-  def adadelta(old_optimizer, fudge_factor, gradient, old_opt_avg, decay_rate, old_update_vector, old_update_vector_avg):
+  class adadelta:
+    def __init__(self, fudge_factor, decay_rate):
+      self.fudge_factor, self.decay_rate = fudge_factor, decay_rate
+      self.update_vector, self.opt_avg, self.update_vector_avg = -1, -1, 1
+      self.optimizer = 0
+      
+  def adadelta(self, gradient):
     gradient_squared = (gradient)*(gradient)
-    opt_avg = ( decay_rate * old_opt_avg) + (gradient_squared * (1 - decay_rate))
-    update_vector_avg = (decay_rate * old_update_vector_avg) + (old_update_vector * (1 - decay_rate))
-    update_vector = -(((math.sqrt(update_vector_avg + fudge_factor)) / (math.sqrt(opt_avg + fudge_factor)))*gradient)
-    optimizer = old_optimizer + update_vector
-    return update_vector_avg, update_vector, opt_avg, optimizer
+    self.opt_avg = ( self.decay_rate * self.opt_avg) + (gradient_squared * (1 - self.decay_rate))
+    self.update_vector_avg = (self.decay_rate * self.update_vector_avg) + (self.update_vector * (1 - self.decay_rate))
+    self.update_vector = -(((math.sqrt(self.update_vector_avg + self.fudge_factor)) / (math.sqrt(self.opt_avg + self.fudge_factor)))*gradient)
+    self.optimizer = self.optimizer + self.update_vector
+    return  self.optimizer
 
 #______________________________________________________________________
 
