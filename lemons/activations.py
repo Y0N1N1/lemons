@@ -32,6 +32,8 @@ class Activation:
         res = -(1 / (1 + math.exp(value)))
         return res
 
+#______________________________________________________________________
+
   class sigmoid_zero_to_one:
     def comp(value):
       if value > 0:
@@ -39,6 +41,8 @@ class Activation:
         return res
       else:
         return 0
+
+#______________________________________________________________________
 
   class binary_step:
     def __init__(self, threshold_value):
@@ -52,6 +56,8 @@ class Activation:
       else:
         return 0
 
+#______________________________________________________________________
+
   class relu:
     def comp(value):
       if value > 0:
@@ -59,6 +65,8 @@ class Activation:
       else: 
         return 0
   
+#______________________________________________________________________
+
   class leaky_relu:
     def comp(value):
       if value > 0:
@@ -66,10 +74,14 @@ class Activation:
       else: 
         return 0.01 * value
   
+#______________________________________________________________________
+
   class tanh:
     def comp(value):
       res = (2 / (1 + (math.pow(__functions__.__constants__.euler_constant, (-2 * value))))) -1
       return res
+
+#______________________________________________________________________
 
   class elu:
     def comp(value):
@@ -78,6 +90,8 @@ class Activation:
       else: 
         return -1
   
+#______________________________________________________________________
+
   class hard_sigmoid:
     def comp(value):
       if value > 1:
@@ -86,6 +100,8 @@ class Activation:
         return -1
       else: 
         return value
+
+#______________________________________________________________________
 
   class hard_sigmoid_zero_to_one:
     def comp(value):
@@ -96,14 +112,20 @@ class Activation:
       else: 
         return value
 
+#______________________________________________________________________
+
   class exponential:
     def comp(value):
       return math.exp(value)
   
+#______________________________________________________________________
+
   class identity:
     def comp(value):
       return value
   
+#______________________________________________________________________
+
   class selu:
     def comp(value):
       if value > 0:
@@ -111,13 +133,19 @@ class Activation:
       else:
         return 1.05070098 * 1.67326324 * ((math.exp(value)) -1)
 
+#______________________________________________________________________
+
   class softplus:
     def comp(value):
       return math.log((math.exp(x)) +1)
   
+#______________________________________________________________________
+
   class softsign:
     def comp(value):
       return x / ((abs(x)) + 1)
+
+#______________________________________________________________________
 
   class swish:
     def comp(value):
@@ -128,6 +156,8 @@ class Activation:
         res = -(1 / (1 + math.exp(value)))
         return res * value
   
+#______________________________________________________________________
+
   class prelu:
     def __init__(self, multiplier):
       self.multiplier = multiplier
@@ -138,6 +168,8 @@ class Activation:
       else: 
         return self.multiplier * value
     
+#______________________________________________________________________
+
   class softmax:
     def comp(vector):
       res = []
