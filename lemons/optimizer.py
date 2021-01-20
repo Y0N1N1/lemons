@@ -59,24 +59,37 @@ class Optimizer:
       self.optimizer = (old_optimizer - (self.learning_rate * gradient))
       return self.optimizer
 
-  def sgd_momentum(old_optimizer, old_velocity, momentum, learning_rate, gradient):
-    velocity = (momentum * old_velocity) + (learning_rate * gradient)
-    optimizer = (old_optimizer - velocity)
-    return velocity, optimizer
+  class sgd_momentum:
+    def __init__(self, learning_rate, momentum):
+      self.learning_rate, self.momentum = learning_rate, momentum
+      self.optimizer, self.velocity = 0, 0
+      
+    def comp(self, gradient):
+      self.velocity = (self.momentum * self.velocity) + (self.learning_rate * gradient)
+      self.optimizer = (self.optimizer - self.velocity)
+      return self.optimizer
   
-  def momentum(old_optimizer, old_momentum, momentum_decay, learning_rate, gradient):
-    # gradient = objective function(old_optimizer)
-    # https://ruder.io/optimizing-gradient-descent/#:~:text=In%20its%20update%20rule%2C%20Adagrad,%CF%B5%20%E2%8B%85%20g%20t%20%2C%20i%20.
-    momentum = (momentum_decay * old_momentum) + (learning_rate * gradient)
-    optimizer = old_optimizer - momentum
-    return momentum, optimizer
+  class momentum:
+    def __init__(self, learning_rate):
+      self.learning_rate, self.momentum_decay = learning_rate, momentum_decay
+      self.optimizer, self.momentum = 0, 0
+      
+    def comp(self,  gradient):
+      # gradient = objective function(old_optimizer)
+      # https://ruder.io/optimizing-gradient-descent/#:~:text=In%20its%20update%20rule%2C%20Adagrad,%CF%B5%20%E2%8B%85%20g%20t%20%2C%20i%20.
+      self.momentum = (self.momentum_decay * self.momentum) + (self.learning_rate * gradient)
+      self.optimizer = self.optimizer - self.momentum
+      return self.optimizer
   
-  def nag(old_optimizer, old_momentum, momentum_decay, learning_rate, gradient):
-    # gradient = objective function(old_optimizer - (momentum_decay * old_momentum))
-    # https://ruder.io/optimizing-gradient-descent/#:~:text=In%20its%20update%20rule%2C%20Adagrad,%CF%B5%20%E2%8B%85%20g%20t%20%2C%20i%20.
-    momentum = (momentum_decay * old_momentum) + (learning_rate * gradient)
-    optimizer = old_optimizer - momentum
-    return momentum, optimizer
+  class nag:
+    def __init__(self,):
+      
+    def comp(old_optimizer, old_momentum, momentum_decay, learning_rate, gradient):
+      # gradient = objective function(old_optimizer - (momentum_decay * old_momentum))
+      # https://ruder.io/optimizing-gradient-descent/#:~:text=In%20its%20update%20rule%2C%20Adagrad,%CF%B5%20%E2%8B%85%20g%20t%20%2C%20i%20.
+      momentum = (momentum_decay * old_momentum) + (learning_rate * gradient)
+      optimizer = old_optimizer - momentum
+      return momentum, optimizer
 
   def sgd_momentum_nesterov(old_optimizer, old_velocity, momentum, learning_rate, gradient):
     velocity = (momentum * old_velocity) + ((learning_rate * gradient)*(old_optimizer - (momentum * old_velocity)))
