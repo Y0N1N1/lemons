@@ -9,3 +9,7 @@ Metric ->
 class Metric:
   def acc(right, total):
     return right / total
+   
+#______________________________________________________________________
+
+#end
