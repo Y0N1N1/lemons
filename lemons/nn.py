@@ -6,6 +6,7 @@ from lemons.loss import Loss
 from lemons.optimizer import Optimizer
 from lemons.metric import Metric
 from lemons.activations import Activation
+from lemons.tensor import Tensor
 from random import random 
 """
 NN ->
@@ -55,14 +56,40 @@ class NN:
     def back(self):
 
 
-    #derivative of cost function with respect to weight -> chain rule -> d[Co]/da * d[a]/dz * d[z]/dw 
-    # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/dw =  derivative of foward function with respect to w
-    #d[Co]/dw -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/dw) -> k = specific cost function, n = size
-    #add to gradient vector
+      #derivative of cost function with respect to weight -> chain rule -> d[Co]/da * d[a]/dz * d[z]/dw 
+      # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/dw =  derivative of foward function with respect to w
+      #d[Co]/dw -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/dw) -> k = specific cost function, n = size
+      #add to gradient vector
+
+      #derivative of cost function with respect to bias -> chain rule -> d[Co]/da * d[a]/dz * d[z]/db 
+      # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/db =  derivative of foward function with respect to bias
+      #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
+      #add to gradient vector
     
-    #derivative of cost function with respect to bias -> chain rule -> d[Co]/da * d[a]/dz * d[z]/db 
-    # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/db =  derivative of foward function with respect to bias
-    #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
-    #add to gradient vector
+    def train(batch_size, epoch, in_data: Tensor, labels: Tensor, show=True):
+      # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
+      # data and labels must be ordered
+      # show will display:
+      # epoch loss, metric, progress
+      get data, split into batch
+      
+      
+      
+    def test(batch_size, in_data: Tensor, labels: Tensor):
+      # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
+      # data and labels must be ordered
+      # test will return a metric and a loss.
+      
+    def pred(batch_size, in_data: Tensor):
+      # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] 
+      # pred will generate a labels matrix shaped (n), and that will be the output
+      
+      
+      
+      
+      
+      
+      
+      
 
 # substract optimizer from weight (each cost func is with respect to one weight, so that will be the weight to be changed)
