@@ -14,6 +14,8 @@ class Utils:
     for i in list_to_prod:
       val *= i
     return val
+  
+#______________________________________________________________________
 
   def point_distance(point1, point2):
     wrong_dim = Error("dimensions dont match")
@@ -28,6 +30,7 @@ class Utils:
       sub = self.point1[i] - self.point2[i]
       distance += (sub * sub)
     return math.sqrt(distance)
+    
+#______________________________________________________________________
 
-
-
+#end
