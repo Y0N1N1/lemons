@@ -1,7 +1,7 @@
 import math
 import os
 import random
-from random import random
+from random import random 
 
 """
 Layer ->
