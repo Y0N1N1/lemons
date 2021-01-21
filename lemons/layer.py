@@ -13,7 +13,7 @@ class Layer:
     def __init__(self, size, activation, bias=None):
       self.size, self.activation = size, activation
       if bias == None:
-        self.bias = random()
+        self.bias = - ((random() + random() + random()) * (random() + random() + random()))
       else:
         self.bias = bias
 
