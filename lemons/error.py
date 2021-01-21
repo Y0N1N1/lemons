@@ -42,6 +42,8 @@ class Error:
 
   def custom(self):
     raise Exception(str(self.custom_message))
+
+#______________________________________________________________________
     
   def try_except_else(self, try_message, except_list, except_answer_list, else_message):
     for i in except_list:
@@ -51,10 +53,12 @@ class Error:
         print(except_answer_list[i])
       else:
         print(else_message)
+
+#______________________________________________________________________
   
   def raise_error(self, error_type):
     exec(f"raise {error_type}({self.custom_message})")
-  
-      
-      
-  
+
+#______________________________________________________________________
+
+#end
