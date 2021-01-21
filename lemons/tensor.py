@@ -27,6 +27,8 @@ class Tensor:
       msg = Error("data not list")
       msg.raise_error("TypeError")
     self.shape = raw_get_shape(data)
+  
+#______________________________________________________________________
 
   def raw_get_shape(self, lst, shape=()):
     if not isinstance(lst, Sequence):
@@ -41,10 +43,18 @@ class Tensor:
     # recurse
     shape = get_shape(lst[0], shape)
     return shape
+  
+#______________________________________________________________________
 
   @property
   def shape(self):
     return self.shape
+  
+#______________________________________________________________________
 
   def assign(self, x):
     self.data = x.data
+      
+#______________________________________________________________________
+
+#end
