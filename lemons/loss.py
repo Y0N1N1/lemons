@@ -133,7 +133,7 @@ class Loss:
 #______________________________________________________________________
  
   class logarithmic_cosh:
-    def comp(y_predicted, y_wanted):
+    def comp(y_wanted, y_predicted):
       val = y_predicted - y_wanted
       ex = math.exp(val)
       mex = math.exp(-val)
