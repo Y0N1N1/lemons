@@ -32,8 +32,18 @@ class NN:
           first = False
         else:
           weight_count = _.size() * self.layer_list[self.layer_list.index[_] - 1].size()
-        layer = [{'weights':[random() for i in range(weight_count)]}]
+        layer = [random() for i in range(weight_count)]
         self.network.append(layer)
+        # network will look like:
+        #[ [0.1423, 0.8752, 0.5632],
+        #  [0.1643,0.8433],
+        #  [0.8172, 0.4812]        ]
+        # to access a layer: network[layer][weight]
+      self.batch_losses = []
+      self.gradients = []
+      self.epoch_losses = []
+      self.testing = []
+      self.predicting = []
 
 
     def view(self):
@@ -66,12 +76,13 @@ class NN:
       #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
       #add to gradient vector
     
-    def train(batch_size, epoch, in_data: Tensor, labels: Tensor, show=True):
+    def train(epoch, in_data: Tensor, labels: Tensor, show=True):
       # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
       # data and labels must be ordered
+      # we expect each data item to be one batch (flatten your data to be (n, m), m = batch size)
       # show will display:
       # epoch loss, metric, progress
-      get data, split into batch
+      
       
       
       
