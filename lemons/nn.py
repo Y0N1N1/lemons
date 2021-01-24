@@ -65,23 +65,33 @@ class NN:
     
     def back(self):
 
-
-      #derivative of cost function with respect to weight -> chain rule -> d[Co]/da * d[a]/dz * d[z]/dw 
-      # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/dw =  derivative of foward function with respect to w
+      derivative_comp - loss, activation, layer - respect to 1 weight, 1 example.
+      average weight with all examples:
       #d[Co]/dw -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/dw) -> k = specific cost function, n = size
+      add to vector of equal dims as network
       #add to gradient vector
-
       #derivative of cost function with respect to bias -> chain rule -> d[Co]/da * d[a]/dz * d[z]/db 
       # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/db =  derivative of foward function with respect to bias
       #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
-      #add to gradient vector
+      #add to bias vector
     
-    def train(epoch, in_data: Tensor, labels: Tensor, show=True):
+    def foward(self, in_data):
+      
+    
+    def train(self, epochs, in_data: Tensor, labels: Tensor, show=True):
       # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
       # data and labels must be ordered
       # we expect each data item to be one batch (flatten your data to be (n, m), m = batch size)
       # show will display:
       # epoch loss, metric, progress
+      for epoch in range(epochs):
+        for batch in range(in_data.data):
+          right = labels.data[batch]
+          predicted = foward(batch)
+          loss = self.loss.comp(right, predicted)
+          # SOMEHOW PERFORM BACKPROP
+          
+          
       
       
       
