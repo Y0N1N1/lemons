@@ -6,20 +6,16 @@ from lemons.error import Error
 
 """
 Tensor ->
-  raw_get_shape
+  get_shape
   shape
   assign
 Ideas ->
   zeros
   reshape
-Note:
-  when a function starts with raw_ it is a "backend function"
-  that should only be used by the module yet you can use it if
-  you want
+
 """
 
 class Tensor:
-
   def __init__(self, data):
     self.data = data
     if not isinstance(data, Sequence):
@@ -30,7 +26,7 @@ class Tensor:
    
 #______________________________________________________________________
 
-  def raw_get_shape(self, lst, shape=()):
+  def get_shape(self, lst, shape=()):
     if not isinstance(lst, Sequence):
         # base case
         return shape
@@ -56,5 +52,23 @@ class Tensor:
     self.data = x.data
       
 #______________________________________________________________________
+
+  def assign_zeros(self, shape):
+    # shape must be m x n
+    self.data = []
+    for i in range(shape[0]):
+      x = [0 for a in range(shape[1])]
+      self.data.append(x)
+  
+  def assign_identity(self, shape):
+    # shape must be m x n
+    self.data = []
+    for i in range(shape[0]):
+      x = [0 for a in range(i)]
+      x.append(1)
+      x.append(0) for a in range(shape[0] -i)
+      self.data.append(x)
+      
+    
 
 #end
