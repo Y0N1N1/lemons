@@ -64,12 +64,13 @@ class NN:
       self.layer_list.append(layer)
     
     def back(self):
-
+      #                dCo/da  da/dz       dz/dw     #  needs: a, z, w
       derivative_comp - loss, activation, layer - respect to 1 weight, 1 example.
       average weight with all examples:
       #d[Co]/dw -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/dw) -> k = specific cost function, n = size
       add to vector of equal dims as network
       #add to gradient vector
+      #                dCo/da  da/dz       dz/db     #  needs: a, z, b
       #derivative of cost function with respect to bias -> chain rule -> d[Co]/da * d[a]/dz * d[z]/db 
       # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/db =  derivative of foward function with respect to bias
       #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
