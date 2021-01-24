@@ -59,16 +59,21 @@ class Tensor:
     for i in range(shape[0]):
       x = [0 for a in range(shape[1])]
       self.data.append(x)
-  
+        
+#______________________________________________________________________
+
   def assign_identity(self, shape):
-    # shape must be m x n
+    # shape must be n, such that actual shape is n x n
     self.data = []
-    for i in range(shape[0]):
+    for i in range(shape):
       x = [0 for a in range(i)]
       x.append(1)
-      x.append(0) for a in range(shape[0] -i)
+      for a in range(shape -i -1):
+          x.append(0)
       self.data.append(x)
       
+#______________________________________________________________________
+
     
 
 #end
