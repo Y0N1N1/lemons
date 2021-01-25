@@ -84,11 +84,22 @@ class NN:
       # self.layer_results = []
       # self.layer_results_after_activation = []
       # BACK GRADIENT
+      grad_list = []
       for layer in self.network:
+        layer_grad_list = []
         for weight in layer:
-          for data_val in self.layer_results[]
-            
-          
+          weight_grad_list = []
+          for data_val in self.layer_results[self.network.index(layer)][layer.index(weight)]:
+            data_val_after_activation = self.layer_results_after_activation[self.network.index(layer)][layer.index(weight)][self.layer_results[self.network.index(layer)][layer.index(weight)].index(data_val)]
+            weight_val_grad = (self.loss.grad_comp(data_val_after_activation)) * (self.layer_list[self.network.index(layer)].activation.grad_comp(data_val)) * (self.layer_list[self.network.index(layer)].grad_comp(weight))
+            weight_grad_list.append(weight_val_grad)
+          weight_grad = sum(weight_grad_list) / len(weight_grad_list)
+          layer_grad_list.append(weight_grad)
+        grad_list.append(layer_grad_list)
+      for grad_layer in grad_list:
+        for grad in grad_layer:
+          optim = self.optimizer.comp(grad)
+          self.network[grad_list.index(grad_layer)][grad_layer.index(grad)] -= optim
       # BACK BIAS
       
     
