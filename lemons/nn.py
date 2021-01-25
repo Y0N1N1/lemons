@@ -102,6 +102,7 @@ class NN:
           self.network[grad_list.index(grad_layer)][grad_layer.index(grad)] -= optim
       # BACK BIAS
       
+      
     
     def foward(self, in_data):
       
