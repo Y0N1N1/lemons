@@ -9,10 +9,8 @@ Tensor ->
   get_shape
   shape
   assign
-Ideas ->
-  zeros
-  reshape
-
+  assign_zeros
+  assign_identity
 """
 
 class Tensor:
@@ -73,7 +71,5 @@ class Tensor:
       self.data.append(x)
       
 #______________________________________________________________________
-
-    
 
 #end
