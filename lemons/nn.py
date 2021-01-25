@@ -11,8 +11,13 @@ from random import random
 """
 NN ->
   FNN ->
-    set_network
-
+    view 
+    add 
+    back
+    foward
+    train
+    test
+    predict
 Available NNs ->
   FNN
   RNN
@@ -42,6 +47,8 @@ class NN:
       self.bias = []
       for i in self.layer_list:
         self.bias.append(random())
+      self.layer_results = []
+      self.layer_results_after_activation = []
 
 
     def view(self):
@@ -62,7 +69,7 @@ class NN:
       self.layer_list.append(layer)
       self.bias.append(random())
     
-    def back(self):
+    def back(self, ):
       #                dCo/da  da/dz       dz/dw     #  needs: a, z, w
       derivative_comp - loss, activation, layer - respect to 1 weight, 1 example.
       average weight with all examples:
@@ -74,35 +81,50 @@ class NN:
       # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/db =  derivative of foward function with respect to bias
       #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
       #add to bias vector
+      # self.layer_results = []
+      # self.layer_results_after_activation = []
+      # BACK GRADIENT
+      for layer in self.network:
+        for weight in layer:
+          for data_val in self.layer_results:
+            
+          
+      # BACK BIAS
       
     
     def foward(self, in_data):
       
     
-    def train(self, epochs, in_data: Tensor, labels: Tensor, show=True):
+    def train(self, batch_size, epochs, in_data: Tensor, labels: Tensor, show=True):
       # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
       # data and labels must be ordered
       # we expect each data item to be one batch (flatten your data to be (n, m), m = batch size)
       # show will display:
       # epoch loss, metric, progress
       for epoch in range(epochs):
-        for batch in range(in_data.data):
-          right = labels.data[batch]
-          predicted = foward(batch)
-          loss = self.loss.comp(right, predicted)
-          # SOMEHOW PERFORM BACKPROP
+        train_data = in_data.data
+        train_labels = labels.data
+        for batch in range(batch_size):
+            item = train_data[0]
+            right = train_labels[0]
+            predicted = foward(item)
+            loss = self.loss.comp(right, predicted)
+            
+            train_data.pop(0)
+            train_labels.pop(0)
+            # SOMEHOW PERFORM BACKPROP
+
           
-          
       
       
       
       
-    def test(batch_size, in_data: Tensor, labels: Tensor):
+    def test(self, batch_size, in_data: Tensor, labels: Tensor):
       # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
       # data and labels must be ordered
       # test will return a metric and a loss.
       
-    def pred(batch_size, in_data: Tensor):
+    def predict(self, batch_size, in_data: Tensor):
       # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] 
       # pred will generate a labels matrix shaped (n), and that will be the output
       
