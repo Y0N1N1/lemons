@@ -86,7 +86,7 @@ class NN:
       # BACK GRADIENT
       for layer in self.network:
         for weight in layer:
-          for data_val in self.layer_results:
+          for data_val in self.layer_results[]
             
           
       # BACK BIAS
