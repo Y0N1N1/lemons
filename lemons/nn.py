@@ -39,11 +39,9 @@ class NN:
         #  [0.1643,0.8433],
         #  [0.8172, 0.4812]        ]
         # to access a layer: network[layer][weight]
-      self.batch_losses = []
-      self.gradients = []
-      self.epoch_losses = []
-      self.testing = []
-      self.predicting = []
+      self.bias = []
+      for i in self.layer_list:
+        self.bias.append(random())
 
 
     def view(self):
@@ -62,6 +60,7 @@ class NN:
     
     def add(self, layer: Layer):
       self.layer_list.append(layer)
+      self.bias.append(random())
     
     def back(self):
       #                dCo/da  da/dz       dz/dw     #  needs: a, z, w
@@ -75,6 +74,7 @@ class NN:
       # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/db =  derivative of foward function with respect to bias
       #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
       #add to bias vector
+      
     
     def foward(self, in_data):
       
