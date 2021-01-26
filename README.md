@@ -23,6 +23,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please respect the licence.
 ## to do
 
-- finish backprop
-- turn funcs into classes
-- make train, test, other blender stuff
+- make loss.grad_comp
+- make actvation.grad_comp
+- make layer.grad_comp
+- make layer.bias_grad_comp
+- make layer_results and layer_results_after_activation with foward, foward
+- make train, test, predict
