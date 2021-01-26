@@ -69,7 +69,7 @@ class NN:
       self.layer_list.append(layer)
       self.bias.append(random())
     
-    def back(self:
+    def back(self):
       # BACK WEIGHT GRADIENT
       grad_list = []
       for layer in self.network:
