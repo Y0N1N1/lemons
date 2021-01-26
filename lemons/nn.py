@@ -69,21 +69,8 @@ class NN:
       self.layer_list.append(layer)
       self.bias.append(random())
     
-    def back(self, ):
-      #                dCo/da  da/dz       dz/dw     #  needs: a, z, w
-      derivative_comp - loss, activation, layer - respect to 1 weight, 1 example.
-      average weight with all examples:
-      #d[Co]/dw -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/dw) -> k = specific cost function, n = size
-      add to vector of equal dims as network
-      #add to gradient vector
-      #                dCo/da  da/dz       dz/db     #  needs: a, z, b
-      #derivative of cost function with respect to bias -> chain rule -> d[Co]/da * d[a]/dz * d[z]/db 
-      # d[Co]/da = derivative of the cost function where a is the respected val,  d[a]/dz = derivative of sigmoid function,  d[z]/db =  derivative of foward function with respect to bias
-      #d[Co]/db -> average out over all training examples: (1/n) * (sum ^n-1 \/ k = 0 of d[Cok]/db) -> k = specific cost function, n = size
-      #add to bias vector
-      # self.layer_results = []
-      # self.layer_results_after_activation = []
-      # BACK GRADIENT
+    def back(self:
+      # BACK WEIGHT GRADIENT
       grad_list = []
       for layer in self.network:
         layer_grad_list = []
@@ -101,7 +88,20 @@ class NN:
           optim = self.optimizer.comp(grad)
           self.network[grad_list.index(grad_layer)][grad_layer.index(grad)] -= optim
       # BACK BIAS
-      
+      bias_grad_list =  []
+      for layer in self.layer_results:
+        bias = self.bias[self.layer_results.index(layer)]
+        single_bias_grad_list = []
+        for point in layer:
+          for data_val in point:
+            data_val_after_activation = self.layer_results_after_activation[self.layer_results.index(layer)][layer.index(data_val)][point.index(data_val)]
+            single_bias_grad = (self.loss.grad_comp(data_val_after_actvation)) * (self.layer_list[self.layer_results.index(layer)].activation.grad_comp(data_val)) * (self.layer_list[self.layer_results.index(layer)].bias_grad_comp(bias))
+            single_bias_grad_list.append(single_bias_grad)
+        bias_grad = sum(single_bias_grad_list) / len(single_bias_grad_list)
+        bias_grad_list.append(bias_grad)
+      for bias in self.bias:
+        optim = self.optimizer.comp(bias_grad_list[self.bias.index(bias)])
+        self.bias[self.bias.index(bias)] -= optim
       
     
     def foward(self, in_data):
