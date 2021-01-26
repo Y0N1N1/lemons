@@ -30,6 +30,9 @@ class Loss:
   class squared:
     def comp(y_wanted, y_predicted):
       return (y_wanted - y_predicted) * (y_wanted - y_predicted)
+    
+    def grad_comp(value):
+      
  
   
 #______________________________________________________________________
