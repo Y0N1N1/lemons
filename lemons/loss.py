@@ -53,8 +53,8 @@ class Loss:
       self.rate = rate
     
     def comp(self, y_wanted, y_predicted):
-      squared = __functions__.__loss_function__.squared(y_wanted, y_predicted)
-      absolute = __functions__.__loss_function__.absolute(y_wanted, y_predicted)
+      squared = __functions__.__loss_function__.squared.comp(y_wanted, y_predicted)
+      absolute = __functions__.__loss_function__.absolute.comp(y_wanted, y_predicted)
       if absolute < self.rate:
         return squared
       else: 
