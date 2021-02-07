@@ -2,7 +2,7 @@
 
 # lemons
 
-Lemons is a python library for the non-normies of the dl community. You can help and use the code at any time under the mit license, all helps apreciated! 
+Lemons is a python library for the non-normies of the dl community. It is dependencies free and only uses python built-in libraries. You can help and use the code at any time under the mit license, all helps apreciated! 
 
 ### Use
 Lemons has yet to launch as we are just starting. We havent got much yet, and its full of errors. 
