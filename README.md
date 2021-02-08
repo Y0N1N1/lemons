@@ -1,11 +1,12 @@
 <img src="https://github.com/Y0N1N1/lemons/blob/main/docs/assets/images/lemonslogo.png?raw=true" height="200" />
 
 # lemons
+### lemons is dependencies free!
 
 Lemons is a python library for the non-normies of the dl community. It is dependencies free and only uses python built-in libraries. You can help and use the code at any time under the mit license, all helps apreciated! 
 
 ### Use
-Lemons has yet to launch as we are just starting. We havent got much yet, and its full of errors. 
+Lemons is still in its beggining,
 if you want you can:
 ```
 pip install git@github.com:Y0N1N1/lemons.git
@@ -24,6 +25,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 Please respect the license.
+## Architecture
+Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), and features are a vector feature_vector of shape (n). A further diagram on the training process is as follows:
+----- to do -----
 ## To Do
 
 - make loss.grad_comp
