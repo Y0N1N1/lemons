@@ -6,8 +6,7 @@
 Lemons is a python library for the non-normies of the dl community. It is dependencies free and only uses python built-in libraries. You can help and use the code at any time under the mit license, all helps apreciated! 
 
 ### Use
-Lemons is still in its beggining,
-if you want you can:
+for package installs you use:
 ```
 pip install git@github.com:Y0N1N1/lemons.git
 ```
@@ -28,6 +27,7 @@ Please respect the license.
 ## Architecture
 Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), and features are a vector feature_vector of shape (n). A further diagram on the training process is as follows:
 ----- to do -----
+Lemons's network architecture is a matrix containing each layer and it's respective weights, stored in the commonly used .h5 file type.
 ## To Do
 
 - make loss.grad_comp
