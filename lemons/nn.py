@@ -39,10 +39,7 @@ class NN:
           weight_count = _.size() * self.layer_list[self.layer_list.index[_] - 1].size()
         layer = [random() for i in range(weight_count)]
         self.network.append(layer)
-        # network will look like:
-        #[ [0.1423, 0.8752, 0.5632],
-        #  [0.1643,0.8433],
-        #  [0.8172, 0.4812]        ]
+        # network will look like a regular matrix
         # to access a layer: network[layer][weight]
       self.bias = []
       for i in self.layer_list:
@@ -104,15 +101,20 @@ class NN:
         self.bias[self.bias.index(bias)] -= optim
       
     
-    def foward(self, in_data):
+    def foward(self, data_matrix : Tensor):
+      # data must be of shape (n, m), a matrix
+      # feature vector must be of shape (n), a vector
+      # data and features must be in order
+      # foward will return a feature_vector
       
     
-    def train(self, batch_size, epochs, in_data: Tensor, labels: Tensor, show=True):
-      # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
-      # data and labels must be ordered
-      # we expect each data item to be one batch (flatten your data to be (n, m), m = batch size)
+    def train(self, batch_size, epochs, data_matrix : Tensor, feature_vector : Tensor, show=True):
+      # data must be of shape (n, m), a matrix
+      # feature vector must be of shape (n), a vector
+      # data and features must be in order
       # show will display:
       # epoch loss, metric, progress
+      # train will output a final loss and metric
       for epoch in range(epochs):
         train_data = in_data.data
         train_labels = labels.data
@@ -131,14 +133,15 @@ class NN:
       
       
       
-    def test(self, batch_size, in_data: Tensor, labels: Tensor):
-      # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] labels: [1, 2, 1], and labels must be of: (n). check data normalization features
-      # data and labels must be ordered
+    def test(self, batch_size, data_matrix : Tensor, feature_vector : Tensor):
+      # data must be of shape (n, m), a matrix
+      # feature vector must be of shape (n), a vector
+      # data and features must be in order
       # test will return a metric and a loss.
       
-    def predict(self, batch_size, in_data: Tensor):
-      # data must be of shape (n, m) and m values must not be lists: e.g.: [[0, 3],[3, 2],[1, 2]] 
-      # pred will generate a labels matrix shaped (n), and that will be the output
+    def predict(self, batch_size, data_matrix : Tensor):
+      # data must be of shape (n, m), a matrix
+      # pred will generate a feature_vector shaped (n), and that will be the output
       
       
       
