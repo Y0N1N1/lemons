@@ -29,7 +29,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 [MIT](https://choosealicense.com/licenses/mit/)
 Please respect the license.
 ## Architecture
-Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), and features are a vector feature_vector of shape (n). A further diagram on the training process is as follows:
+Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), and labels are a vector label_vector of shape (n). A further diagram on the training process is as follows:
 ----- to do -----
 Lemons's network architecture is a matrix containing each layer and it's respective weights, stored in the commonly used .h5 file type.
 ## To Do
