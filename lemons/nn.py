@@ -103,15 +103,13 @@ class NN:
     
     def foward(self, data_matrix : Tensor):
       # data must be of shape (n, m), a matrix
-      # feature vector must be of shape (n), a vector
-      # data and features must be in order
-      # foward will return a feature_vector
+      # foward will return a label_vector
       
     
-    def train(self, batch_size, epochs, data_matrix : Tensor, feature_vector : Tensor, show=True):
+    def train(self, batch_size, epochs, data_matrix : Tensor, label_vector : Tensor, show=True):
       # data must be of shape (n, m), a matrix
-      # feature vector must be of shape (n), a vector
-      # data and features must be in order
+      # label vector must be of shape (n), a vector
+      # data and labels must be in order
       # show will display:
       # epoch loss, metric, progress
       # train will output a final loss and metric
@@ -133,15 +131,15 @@ class NN:
       
       
       
-    def test(self, batch_size, data_matrix : Tensor, feature_vector : Tensor):
+    def test(self, batch_size, data_matrix : Tensor, label_vector : Tensor):
       # data must be of shape (n, m), a matrix
-      # feature vector must be of shape (n), a vector
-      # data and features must be in order
+      # label vector must be of shape (n), a vector
+      # data and labels must be in order
       # test will return a metric and a loss.
       
     def predict(self, batch_size, data_matrix : Tensor):
       # data must be of shape (n, m), a matrix
-      # pred will generate a feature_vector shaped (n), and that will be the output
+      # pred will generate a label_vector shaped (n), and that will be the output
       
       
       
