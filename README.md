@@ -20,8 +20,33 @@ The main frameworks for building neural nets that give a great level of freedom 
 ### Example
 Here is a simple NN example
 ```python
-import lemons as lm 
-# still to do 
+import lemons as lm
+from lemons.loss import Loss
+from lemons.optimizer import Optimizer
+from lemons.metric import Metric
+from lemons.layer import Layer
+from lemons.nn import NN
+
+cross_entropy = Loss.cross_entropy(2) # 2 because there are 2 classes
+adam = Optimizer.adam(0.001, 0.001, 0.9, 0.99) # learning_rate, fudge_factor,decay_rate_one, decay_rate_two 
+acc = Metric.acc
+
+activation = Activation.sigmoid
+l1 = Layer.dense(10000, activation)
+l2 = Layer.dense(7000, activation)
+l3 = Layer.dense(300, activation)
+l4 = Layer.dense(2, activation)
+
+# build net
+network = NN.FNN(cross_entropy, adam, acc, [l1, l2, l3, l4])
+
+# train
+data_matrix, label_vector = lm.Tensor([--]), lm.Tensor([--]) # plug data here
+
+batch, epoch = 10, 30000
+network.train(batch, epoch, data_matrix, label_vector)
+# prints current loss, epoch, acc
+
 ```
 ## Help
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
