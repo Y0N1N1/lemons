@@ -7,7 +7,8 @@ Metric ->
   acc 
 """
 class Metric:
-  def acc(right, total):
+  class acc:
+    def comp(right, total):
     return right / total 
    
 #______________________________________________________________________
