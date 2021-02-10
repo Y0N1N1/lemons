@@ -26,6 +26,7 @@ from lemons.optimizer import Optimizer
 from lemons.metric import Metric
 from lemons.layer import Layer
 from lemons.nn import NN
+From lemons.tensor import Tensor
 
 cross_entropy = Loss.cross_entropy(2) # 2 because there are 2 classes
 adam = Optimizer.adam(0.001, 0.001, 0.9, 0.99) # learning_rate, fudge_factor,decay_rate_one, decay_rate_two 
@@ -41,7 +42,7 @@ l4 = Layer.dense(2, activation)
 network = NN.FNN(cross_entropy, adam, acc, [l1, l2, l3, l4])
 
 # train
-data_matrix, label_vector = lm.Tensor([--]), lm.Tensor([--]) # plug data here
+data_matrix, label_vector = Tensor([--]), Tensor([--]) # plug data here
 
 batch, epoch = 10, 30000
 network.train(batch, epoch, data_matrix, label_vector)
