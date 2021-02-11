@@ -26,7 +26,7 @@ from lemons.optimizer import Optimizer
 from lemons.metric import Metric
 from lemons.layer import Layer
 from lemons.nn import NN
-From lemons.tensor import Tensor
+from lemons.tensor import Tensor
 
 cross_entropy = Loss.cross_entropy(2) # 2 because there are 2 classes
 adam = Optimizer.adam(0.001, 0.001, 0.9, 0.99) # learning_rate, fudge_factor,decay_rate_one, decay_rate_two 
@@ -48,6 +48,10 @@ batch, epoch = 10, 30000
 network.train(batch, epoch, data_matrix, label_vector)
 # prints current loss, epoch, acc
 
+# save
+network.save('model.h5')
+# model.h5 must already be a file
+# will save the weight matrix 
 ```
 Or if you prefer
 ```python
@@ -72,17 +76,25 @@ class net:
     l3 = Layer.dense(300, activation)
     l4 = Layer.dense(2, activation)
     self.network = [l1, l2, l3, l4]
+  
   def build(self):
     # build net
-    network = NN.FNN(self.cross_entropy, self.adam, self.acc, self.network)
+    self.network = NN.FNN(self.cross_entropy, self.adam, self.acc, self.network)
+  
   def train(self, data_matrix, label_vector):
     # train
     batch, epoch = 10, 30000
-    network.train(batch, epoch, data_matrix, label_vector)
-
+    self.network.train(batch, epoch, data_matrix, label_vector)
+  
+  def save(self, h5_name):
+    self.network.save(f'{h5_name}')
+    # model.h5 must already be a file
+    # will save the weight matrix 
+  
 first = net
 first.train(data_matrix, label_vector)
 # prints current loss, epoch, acc
+first.save('model.h5')
 ```
 ## Help
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
