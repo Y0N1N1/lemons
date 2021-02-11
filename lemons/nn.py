@@ -139,7 +139,7 @@ class NN:
     def save(self, file_name):
       # file_name must be a txt file in the same directory, lemons will siply write the network weight matrix.
       with open(f"{file_name}.txt", "w") as f:
-        f.write(f"self.network")
+        f.write(f"{self.network}")
       
       
       
