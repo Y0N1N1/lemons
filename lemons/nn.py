@@ -137,7 +137,10 @@ class NN:
       # pred will generate a label_vector shaped (n), and that will be the output
     
     def save(self, file_name):
-      # tod o
+      # file_name must be a txt file in the same directory, lemons will siply write the network weight matrix.
+      with open(f"{file_name}.txt", "w") as f:
+        f.write(f"self.network")
+      
       
       
       
