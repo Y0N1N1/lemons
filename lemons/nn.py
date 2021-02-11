@@ -125,12 +125,7 @@ class NN:
             train_data.pop(0)
             train_labels.pop(0)
             # SOMEHOW PERFORM BACKPROP
-
-          
-      
-      
-      
-      
+ 
     def test(self, batch_size, data_matrix : Tensor, label_vector : Tensor):
       # data must be of shape (n, m), a matrix
       # label vector must be of shape (n), a vector
@@ -140,6 +135,9 @@ class NN:
     def predict(self, batch_size, data_matrix : Tensor):
       # data must be of shape (n, m), a matrix
       # pred will generate a label_vector shaped (n), and that will be the output
+    
+    def save(self, file_name):
+      # tod o
       
       
       
