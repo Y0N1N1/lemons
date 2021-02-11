@@ -112,5 +112,4 @@ Lemons's network architecture is a matrix containing each layer and it's respect
 - make layer.grad_comp
 - make layer.bias_grad_comp
 - make layer_results and layer_results_after_activation with foward, foward
-- make train, test, predict
-- make save
+- make train, test, pred
