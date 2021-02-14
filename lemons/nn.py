@@ -46,6 +46,13 @@ class NN:
         self.bias.append(random())
       self.layer_results = []
       self.layer_results_after_activation = []
+      for l in self.network:
+        x = []
+        for w in l:
+          y = []
+          x.append(y)
+        self.layer_results.append(x)
+        self.layer_results_after_activation.append(x)
 
 
     def view(self):
@@ -101,9 +108,18 @@ class NN:
         self.bias[self.bias.index(bias)] -= optim
       
     
-    def foward(self, data_matrix : Tensor):
-      # data must be of shape (n, m), a matrix
+    def foward(self, data_vector):
+      # data_vector must be of shape (n), a vector
       # foward will return a label_vector
+      
+      # comp everything
+      # store layer_results_after_activation, layer_results
+      # return label_vector
+      for layer in self.network:
+        for weight in layer:
+          
+        
+      
       
     
     def train(self, batch_size, epochs, data_matrix : Tensor, label_vector : Tensor, show=True):
