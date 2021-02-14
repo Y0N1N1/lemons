@@ -34,8 +34,8 @@ class Layer:
      
     def comp(self, weight_list, neuron_list, bias):
       tot = 0
-      for i in range(weight_list):
-        x = i * neuron_list[i]
+      for i, w in enumerate(weight_list):
+        x = w * neuron_list[i]
         tot += x
       tot += bias
       tot = self.activation.comp(tot)
@@ -61,8 +61,8 @@ class Layer:
 
     def comp(self, weight_list, neuron_list, bias):
       tot = []
-      for i in range(weight_list):
-        x = i * neuron_list[i]
+      for i, w in enumerate(weight_list):
+        x = w * neuron_list[i]
         tot.append(x)
       tot = sum(tot) / len(tot)
       tot += bias
@@ -89,8 +89,8 @@ class Layer:
     
     def comp(self, weight_list, neuron_list, bias):
       tot = []
-      for i in range(weight_list):
-        x = i * neuron_list[i]
+      for i,w in enumerate(weight_list):
+        x = w * neuron_list[i]
         tot.append(x)
       tot = max(tot)
       tot += bias
@@ -117,8 +117,8 @@ class Layer:
     
     def comp(self, weight_list, neuron_list, bias):
       tot = []
-      for i in range(weight_list):
-        x = i * neuron_list[i]
+      for i,w in enumerate(weight_list):
+        x = w * neuron_list[i]
         tot.append(x)
       tot = min(tot)
       tot += bias
@@ -145,7 +145,7 @@ class Layer:
     
     def comp(self, weight_list, neuron_list, bias):
       tot = 0
-      for i in range(neuron_list):
+      for i in neuron_list:
         tot += i
       tot += bias
       tot = self.activation.comp(tot)
@@ -171,7 +171,7 @@ class Layer:
     
     def comp(self, weight_list, neuron_list, bias):
       tot = 0
-      for i in range(neuron_list):
+      for i in neuron_list:
         tot -= i
       tot += bias
       tot = self.activation.comp(tot)
@@ -197,7 +197,7 @@ class Layer:
     
     def comp(self, weight_list, neuron_list, bias):
       tot = 1
-      for i in range(neuron_list):
+      for i in neuron_list:
         tot *= i
       tot += bias
       tot = self.activation.comp(tot)
@@ -223,7 +223,7 @@ class Layer:
     
     def comp(self, weight_list, neuron_list):
       tot = []
-      for i in range(neuron_list):
+      for i in neuron_list:
         x = self.activation.comp(i)
         tot.append(x)
       tot = sum(tot) / len(tot)
