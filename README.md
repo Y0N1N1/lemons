@@ -4,11 +4,11 @@
 
 --------------------------------------------------------------------
 
-# lemons
+# Lemons
 
 Lemons is a python library for the non-normies of the dl community. It is dependencies free and only uses python built-in libraries. You can help and use the code at any time under the mit license, all helps apreciated! 
 
-### lemons is dependencies free!
+### Lemons is dependencies free!
 
 no more 
 ```bash
@@ -110,7 +110,7 @@ Lemons's architecture is pretty basic, it works with Tensor objects for data, wh
 ----- to do -----
 Lemons's network architecture is a matrix containing each layer and it's respective weights, stored in the commonly used .h5 file type.
 
-## save
+## Save
 lemons likes to keep it simple and save the network as a weight matrix on some txt file, they are easy to operate in and don't require any modules, example:
 ```python
 # save
