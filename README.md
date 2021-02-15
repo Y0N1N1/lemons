@@ -55,8 +55,8 @@ network.train(batch, epoch, data_matrix, label_vector)
 # prints current loss, epoch, acc
 
 # save
-network.save('model.h5')
-# model.h5 must already be a file
+network.save('model.txt')
+# model.txt must already be a file
 # will save the weight matrix 
 ```
 Or if you prefer
@@ -92,15 +92,13 @@ class net:
     batch, epoch = 10, 30000
     self.network.train(batch, epoch, data_matrix, label_vector)
   
-  def save(self, h5_name):
-    self.network.save(f'{h5_name}')
-    # model.h5 must already be a file
-    # will save the weight matrix 
+  def save(self, txt_name):
+    self.network.save(f'{txt_name}')
   
 first = net()
 first.train(data_matrix, label_vector)
 # prints current loss, epoch, acc
-first.save('model.h5')
+first.save('model.txt')
 ```
 ## Help
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -111,6 +109,17 @@ Please respect the license.
 Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), and labels are a vector label_vector of shape (n). A further diagram on the training process is as follows:
 ----- to do -----
 Lemons's network architecture is a matrix containing each layer and it's respective weights, stored in the commonly used .h5 file type.
+
+## save
+lemons likes to keep it simple and save the network as a weight matrix on some txt file, they are easy to operate in and don't require any modules, example:
+```python
+# save
+...
+network.save('model.txt')
+# model.txt must already be a file
+# will save the weight matrix 
+```
+
 ## To Do
 
 - make loss.grad_comp
@@ -121,7 +130,6 @@ Lemons's network architecture is a matrix containing each layer and it's respect
 - make train, test, pred
 - check activation
 - make layer with res and res_actv for all layer and check layers
-- check error
 - check loss
 - check metric
 - improve metric
