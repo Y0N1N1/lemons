@@ -4,6 +4,8 @@
 
 --------------------------------------------------------------------
 
+![test](https://github.com/Y0N1N1/lemons/workflows/test/badge.svg)
+  
 # Lemons
 
 Lemons is a python library for the non-normies of the dl community. It is dependencies free and only uses python built-in libraries. You can help and use the code at any time under the mit license, all helps apreciated! 
