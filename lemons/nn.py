@@ -141,16 +141,19 @@ class NN:
             # SOMEHOW PERFORM BACKPROP
             
             ##### loss il
+            ##### tqdm
  
     def test(self, batch_size, data_matrix : Tensor, label_vector : Tensor):
       # data must be of shape (n, m), a matrix
       # label vector must be of shape (n), a vector
       # data and labels must be in order
       # test will return a metric and a loss.
+      ##### tqdm
       
     def predict(self, batch_size, data_matrix : Tensor):
       # data must be of shape (n, m), a matrix
       # pred will generate a label_vector shaped (n), and that will be the output
+      ###### tqdm
     
     def save(self, file_name):
       # file_name must be a txt file in the same directory, lemons will siply write the network weight matrix.
