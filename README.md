@@ -91,7 +91,7 @@ class net:
     # model.h5 must already be a file
     # will save the weight matrix 
   
-first = net
+first = net()
 first.train(data_matrix, label_vector)
 # prints current loss, epoch, acc
 first.save('model.h5')
@@ -113,3 +113,13 @@ Lemons's network architecture is a matrix containing each layer and it's respect
 - make layer.bias_grad_comp
 - make layer_results and layer_results_after_activation with foward, foward
 - make train, test, pred
+- check activation
+- make layer with res and res_actv for all layer and check layers
+- check error
+- check loss
+- check metric
+- improve metric
+- check optimizer
+- check tensor
+- check utils
+- make first launch
