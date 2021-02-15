@@ -16,7 +16,7 @@ Loss ->
   binary_cross_entropy
   cross_entropy
   custom_log_cross_entropy
-  poisson
+  poisson 
   kl_divergence
   hinge
   leaky_hinge
