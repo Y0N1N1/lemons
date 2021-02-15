@@ -5,13 +5,19 @@
 --------------------------------------------------------------------
 
 # lemons
-### lemons is dependencies free!
 
 Lemons is a python library for the non-normies of the dl community. It is dependencies free and only uses python built-in libraries. You can help and use the code at any time under the mit license, all helps apreciated! 
 
+### lemons is dependencies free!
+
+no more 
+```bash
+pip install -r requirements.txt
+```
+
 ### Use
 for package installs you use:
-```
+```bash
 pip3 install https://github.com/Y0N1N1/lemons.git --upgrade
 ```
 ### Motivation
