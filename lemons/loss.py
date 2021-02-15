@@ -28,6 +28,9 @@ Loss ->
 
 class Loss:
   class squared:
+    def __init__(self):
+      self.il = False
+      
     def comp(y_wanted, y_predicted):
       return (y_wanted - y_predicted) * (y_wanted - y_predicted)
     
@@ -38,6 +41,9 @@ class Loss:
 #______________________________________________________________________
  
   class absolute:
+    def __init__(self):
+      self.il = False
+      
     def comp(y_wanted, y_predicted):
       res = y_wanted - y_predicted
       if res > 0:
@@ -51,6 +57,7 @@ class Loss:
   class huber:
     def __init__(self, rate):
       self.rate = rate
+      self.il = False
     
     def comp(self, y_wanted, y_predicted):
       squared = Loss.squared.comp(y_wanted, y_predicted)
@@ -67,6 +74,7 @@ class Loss:
     def __init__(self, rate, bottom):
       self.rate = rate
       self.bottom = bottom
+      self.il = False
       
     def comp(self, y_wanted, y_predicted):
       bot = self.bottom
@@ -91,6 +99,7 @@ class Loss:
     def __init__(self, rate, bottom):
       self.rate = rate
       self.bottom = bottom
+      self.il = False
       
     def comp(self, y_wanted, y_predicted):
       bot = self.bottom
@@ -112,6 +121,9 @@ class Loss:
 #______________________________________________________________________
  
   class absolute_percentage:
+    def __init__(self):
+      self.il = False
+      
     def comp(y_wanted, y_predicted):
       return 100 * (abs(y_wanted - y_predicted)/y_wanted)
 
@@ -119,8 +131,11 @@ class Loss:
 #______________________________________________________________________
  
   class squared_logarithmic:
+    def __init__(self):
+      self.il = False
+      
     def comp(y_wanted, y_predicted):
-      return ((math.log(y_wanted + 1))*(math.log(y_wanted + 1)))-(math.log(y_predicted + 1))
+      return ((math.log(y_wanted + 1))*(math.log(y_wanted + 1))-(math.log(y_predicted + 1))
 
   
 #______________________________________________________________________
@@ -128,6 +143,7 @@ class Loss:
   class squared_custom_logarithmic:
     def __init__(self, custom_base):
       self.custom_base = custom_base
+      self.il = False
       
     def comp(self, y_wanted, y_predicted):
       return ((math.log(y_wanted + 1,self.custom_base))*(math.log(y_wanted + 1,self.custom_base)))-(math.log(y_predicted + 1,self.custom_base))
@@ -136,6 +152,9 @@ class Loss:
 #______________________________________________________________________
  
   class logarithmic_cosh:
+    def __init__(self):
+      self.il = False
+              
     def comp(y_wanted, y_predicted):
       val = y_predicted - y_wanted
       ex = math.exp(val)
@@ -147,6 +166,9 @@ class Loss:
 #______________________________________________________________________
  
   class binary_cross_entropy:
+    def __init__(self):
+      self.il = False
+   
     def comp(y_wanted, y_predicted):
       if y_predicted == 1:
         return -math.log(y_wanted)
@@ -158,10 +180,11 @@ class Loss:
  
   class cross_entropy:
     def __init__(self, number_of_classes):
-      self.number_of_classes = number_of_classes
+      self.number_of_classes = number_of_classes 
+      self.il = True
       
     def comp(self, y_meets_wanted_list, y_predicted_list):
-      sum_list = []
+      sum_list = [] 
       for i in range(self.number_of_classes):
         wan = y_meets_wanted_list[i]
         pred = y_predicted_list[i]
@@ -178,6 +201,7 @@ class Loss:
   class custom_log_cross_entropy:
     def __init__(self, base, number_of_classes):
       self.base, self.number_of_classes = base, number_of_classes
+      self.il = True
 
     def comp(self, y_meets_wanted_list, y_predicted_list):
       sum_list = []
@@ -195,6 +219,9 @@ class Loss:
 #______________________________________________________________________
   
   class poisson:
+    def __init__(self):
+      self.il = False
+              
     def comp(y_wanted, y_predicted):
       return (y_predicted - (y_wanted * math.log(y_predicted)))
 
@@ -202,6 +229,9 @@ class Loss:
 #______________________________________________________________________
  
   class kl_divergence:
+    def __init__(self):
+      self.il = False
+              
     def comp(y_wanted, y_predicted):
       return (y_wanted * math.log(y_wanted / y_predicted))
 
@@ -209,6 +239,9 @@ class Loss:
 #______________________________________________________________________
  
   class hinge:
+    def __init__(self):
+      self.il = False
+              
     def comp(y_wanted, y_predicted):
       #y_wanted MUST be either -1 or 1 (-1: 0, 1: 1). we will auto convert 0 to -1.
       if y_wanted == 0:
@@ -232,6 +265,7 @@ class Loss:
   class leaky_hinge:
     def __init__(self, rate):
       self.rate = rate
+      self.il = False
       
     def comp(self, y_wanted, y_predicted):
       #y_wanted MUST be either -1 or 1 (-1: 0, 1: 1). we will auto convert 0 to -1.
@@ -254,6 +288,9 @@ class Loss:
 #______________________________________________________________________
  
   class squared_hinge:
+    def __init__(self):
+      self.il = False
+              
     def comp(y_wanted, y_predicted):
       #y_wanted MUST be either -1 or 1 (-1: 0, 1: 1). we will auto convert 0 to -1.
       if y_wanted == 0:
@@ -277,7 +314,8 @@ class Loss:
   class squared_leaky_hinge:
     def __init__(self, rate):
       self.rate = rate
-    
+      self.il = False
+              
     def comp(self, y_wanted, y_predicted):
       #y_wanted MUST be either -1 or 1 (-1: 0, 1: 1). we will auto convert 0 to -1.
       if y_wanted == 0:
@@ -299,6 +337,9 @@ class Loss:
 #______________________________________________________________________
  
   class categorical_hinge:
+    def __init__(self):
+      self.il = True
+              
     def comp(y_wanted_list, y_predicted_list):
       neg = []
       pos = []
@@ -318,7 +359,8 @@ class Loss:
   class leaky_categorical_hinge:
     def __init__(self, rate):
       self.rate = rate
-    
+      self.il = True
+              
     def comp(self, y_wanted_list, y_predicted_list):
       neg = []
       pos = []
