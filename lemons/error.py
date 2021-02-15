@@ -3,7 +3,7 @@ Error ->
   custom
   try_except_else
   raise_error
-Error list ->
+Error list ->  
   AssertionError			#Raised when assert statement fails.
   AttributeError			#Raised when attribute assignment or reference fails.
   EOFError				#Raised when the input() functions hits end-of-file condition.
