@@ -7,7 +7,7 @@ Metric ->
   acc 
 """
 class Metric:
-  class acc:
+  class acc: 
     def __init__(self):
       self.il = True
       
