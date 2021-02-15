@@ -8,9 +8,20 @@ Metric ->
 """
 class Metric:
   class acc:
-    def comp(right, total):
-    return right / total 
-   
+    def __init__(self):
+      self.il = True
+      
+    def comp(y_wanted_list, y_predicted_list):
+      right = 0
+      total = 0
+      for n, i in enumerate(y_predicted_list):
+        if i == y_wanted_list[n]:
+          right += 1
+          total += 1
+        else:
+          total += 1
+      return (right/total)
+    
 #______________________________________________________________________
   class squared:
     def __init__(self):
@@ -19,10 +30,7 @@ class Metric:
     def comp(y_wanted, y_predicted):
       return (y_wanted - y_predicted) * (y_wanted - y_predicted)
     
-    def grad_comp(value):
-      
- 
-  
+    
 #______________________________________________________________________
  
   class absolute:
