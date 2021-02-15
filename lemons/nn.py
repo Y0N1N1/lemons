@@ -20,8 +20,6 @@ NN ->
     predict
 Available NNs ->
   FNN
-  RNN
-  CNN
 """
 class NN:
   class FNN:
@@ -141,6 +139,8 @@ class NN:
             train_data.pop(0)
             train_labels.pop(0)
             # SOMEHOW PERFORM BACKPROP
+            
+            ##### loss il
  
     def test(self, batch_size, data_matrix : Tensor, label_vector : Tensor):
       # data must be of shape (n, m), a matrix
