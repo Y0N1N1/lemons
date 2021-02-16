@@ -110,7 +110,7 @@ Please respect the license.
 ## Architecture
 Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), and labels are a vector label_vector of shape (n). A further diagram on the training process is as follows:
 ----- to do -----
-Lemons's network architecture is a matrix containing each layer and it's respective weights, stored in the commonly used .h5 file type.
+Lemons's primary network architecture is a rank 3 containing each layer and it's respective neurons, and each neuron's weights, stored in the commonly used .h5 file type.
 
 ## Save
 lemons likes to keep it simple and save the network as a weight matrix on some txt file, they are easy to operate in and don't require any modules, example:
