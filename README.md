@@ -4,7 +4,9 @@
 
 --------------------------------------------------------------------
 
-![test](https://github.com/Y0N1N1/lemons/workflows/test/badge.svg)
+![unit test](https://github.com/Y0N1N1/lemons/workflows/test/badge.svg)
+![full compile](https://github.com/y0n1n1/lemons/workflows/full_compile/badge.svg)
+![deploy](https://github.com/Y0N1N1/lemons/workflows/deployment/badge.svg)
   
 # Lemons
 
