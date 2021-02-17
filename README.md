@@ -5,7 +5,7 @@
 --------------------------------------------------------------------
 
 ![unit test](https://github.com/Y0N1N1/lemons/workflows/test/badge.svg)
-![compile](https://github.com/y0n1n1/lemons/workflows/compile/badge.svg)
+![compile](https://github.com/Y0N1N1/lemons/workflows/compile/badge.svg)
 ![deploy](https://github.com/Y0N1N1/lemons/workflows/deployment/badge.svg)
   
 # Lemons
