@@ -125,19 +125,4 @@ network.save('model.txt')
 ```
 
 ## To Do
-
-- make loss.grad_comp
-- make actvation.grad_comp
-- make layer.grad_comp
-- make layer.bias_grad_comp
-- make layer_results and layer_results_after_activation with foward, foward
-- make train, test, pred
-- check activation
-- make layer with res and res_actv for all layer and check layers
-- check loss
-- check metric
-- improve metric
-- check optimizer
-- check tensor
-- check utils
-- make first launch
+https://github.com/Y0N1N1/lemons/projects/2
