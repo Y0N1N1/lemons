@@ -115,7 +115,7 @@ class NN:
       # return label_vector
       for layer in self.network:
         for weight in layer:
-          
+          pass # to do 
         
       
       
