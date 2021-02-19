@@ -20,7 +20,7 @@ class Tensor:
       self.shape = "error"
       msg = Error("data not list")
       msg.raise_error("TypeError")
-    self.shape = get_shape(data)
+    self.shape = Tensor.get_shape(data)
    
 #______________________________________________________________________
 
@@ -35,7 +35,7 @@ class Tensor:
             msg.raise_error("ValueError")
     shape += (len(lst), )
     # recurse
-    shape = get_shape(lst[0], shape)
+    shape = Tensor.get_shape(lst[0], shape)
     return shape
   
 #______________________________________________________________________
