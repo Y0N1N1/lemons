@@ -137,7 +137,7 @@ class Activation:
 
   class softplus:
     def comp(value):
-      return math.log((math.exp(x)) +1)
+      return math.log((math.exp(value)) +1)
   
 #______________________________________________________________________
 
