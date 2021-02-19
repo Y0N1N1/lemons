@@ -143,7 +143,7 @@ class Activation:
 
   class softsign:
     def comp(value):
-      return x / ((abs(x)) + 1)
+      return (value / ((abs(value)) + 1))
 
 #______________________________________________________________________
 
