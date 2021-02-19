@@ -8,9 +8,11 @@ from lemons.error import Error
 Tensor ->
   get_shape
   shape
+  dtype
   assign
-  assign_zeros
-  assign_identity
+  zeros
+  ones
+  eye
 """
 
 class Tensor:
@@ -57,7 +59,7 @@ class Tensor:
       
 #______________________________________________________________________
 
-  def assign_zeros(self, shape=self.shape, data=[], first=True):
+  def zeros(self, shape=self.shape, data=[], first=True):
     # shape must be m x n
     self.data = data
     s = math.prod(shape)
@@ -77,7 +79,7 @@ class Tensor:
 
 #______________________________________________________________________
 
-  def assign_ones(self, shape=self.shape, data=[], first=True):
+  def ones(self, shape=self.shape, data=[], first=True):
     # shape must be m x n
     self.data = data
     s = math.prod(shape)
