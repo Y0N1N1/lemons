@@ -24,19 +24,19 @@ class Tensor:
    
 #______________________________________________________________________
 
-  def get_shape(self, lst, shape=()):
-    if not isinstance(lst, Sequence):
-        # base case
-        return shape
-    if isinstance(lst[0], Sequence):
-        l = len(lst[0])
-        if not all(len(item) == l for item in lst):
-            msg = Error('not all lists have the same length')
-            msg.raise_error("ValueError")
-    shape += (len(lst), )
-    # recurse
-    shape = Tensor.get_shape(lst[0], shape)
+   def get_shape(lst):
+    shape = []
+    l = lst
+    s = True
+    while s:
+        shape.append(len(l))
+        if isinstance(l[0], Sequence):
+            s = True
+            l = l[0]
+        else:
+            s = False
     return shape
+  
   
 #______________________________________________________________________
 
