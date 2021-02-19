@@ -20,7 +20,7 @@ class Tensor:
       self.shape = "error"
       msg = Error("data not list")
       msg.raise_error("TypeError")
-    self.shape = raw_get_shape(data)
+    self.shape = get_shape(data)
    
 #______________________________________________________________________
 
