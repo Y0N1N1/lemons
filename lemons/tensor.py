@@ -4,7 +4,7 @@ import random
 from collections.abc import Sequence
 from lemons.error import Error
 
-"""
+""" 
 Tensor ->
   get_shape
   shape
