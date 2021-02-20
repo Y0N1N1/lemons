@@ -3,7 +3,7 @@ import os
 import random
 
 """
-Optimizer ->
+Optimizer -> 
   gradient_descent
   sgd
   mini_batch_gradient_descent
