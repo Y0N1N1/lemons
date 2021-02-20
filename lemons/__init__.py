@@ -7,4 +7,4 @@ import lemons.tensor
 import lemons.metric
 import lemons.optimizer
 import lemons.activation
-# lemons is dependencies free!
+# lemons is dependencies free! 
