@@ -40,6 +40,16 @@ class Layer:
       tot += bias
       tot = self.activation.comp(tot)
       return tot
+
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      return neuron_list[weight_index]
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight_list, neuron_list, bias):
+      return 0
   
 #______________________________________________________________________
 
@@ -69,6 +79,16 @@ class Layer:
       tot = self.activation.comp(tot)
       return tot
   
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      return (neuron_list[weight_index] / len(weight_list))
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight, neuron, bias):
+      return 0
+  
 #______________________________________________________________________
 
   class maximum:
@@ -96,6 +116,21 @@ class Layer:
       tot += bias
       tot = self.activation.comp(tot)
       return tot
+    
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      tot = 0
+      for i,w in enumerate(weight_list):
+        x = w * neuron_list[i]
+        if x > tot:
+          tot = neuron_list[i]
+      return tot
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight, neuron, bias):
+      return 0
   
 #______________________________________________________________________
 
@@ -124,6 +159,21 @@ class Layer:
       tot += bias
       tot = self.activation.comp(tot)
       return tot
+      
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      tot = 100000
+      for i,w in enumerate(weight_list):
+        x = w * neuron_list[i]
+        if x < tot:
+          tot = neuron_list[i]
+      return tot
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight, neuron, bias):
+      return 0
   
 #______________________________________________________________________
 
@@ -150,6 +200,16 @@ class Layer:
       tot += bias
       tot = self.activation.comp(tot)
       return tot
+      
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      return 0
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight, neuron, bias):
+      return 0
   
 #______________________________________________________________________
 
@@ -176,6 +236,16 @@ class Layer:
       tot += bias
       tot = self.activation.comp(tot)
       return tot
+      
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      return 0
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight, neuron, bias):
+      return 0
   
 #______________________________________________________________________
 
@@ -202,6 +272,16 @@ class Layer:
       tot += bias
       tot = self.activation.comp(tot)
       return tot
+      
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      return 0
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight, neuron, bias):
+      return 0
   
 #______________________________________________________________________
 
@@ -221,13 +301,23 @@ class Layer:
 
 #_________________________________
     
-    def comp(self, weight_list, neuron_list):
+    def comp(self, weight_list, neuron_list, bias):
       tot = []
       for i in neuron_list:
         x = self.activation.comp(i)
         tot.append(x)
       tot = sum(tot) / len(tot)
       return tot
+      
+#_________________________________
+    
+    def grad_comp(self, weight_list, neuron_list, bias, weight_index):
+      return 0
+
+#_________________________________
+    
+    def bias_grad_comp(self, weight, neuron, bias):
+      return 0
   
 #______________________________________________________________________
 
