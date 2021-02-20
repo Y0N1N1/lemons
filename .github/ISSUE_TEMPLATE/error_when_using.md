@@ -4,7 +4,7 @@ about: The error you encountered while using manim
 title: ''
 labels: ''
 assignees: ''
-
+ 
 ---
 
 ### Describe the error
