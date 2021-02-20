@@ -1,7 +1,6 @@
 import math
 import os
 import random
-from random import random 
  
 """
 Layer ->
@@ -38,8 +37,9 @@ class Layer:
         x = w * neuron_list[i]
         tot += x
       tot += bias
+      res = tot
       tot = self.activation.comp(tot)
-      return tot
+      return tot, res
 
 #_________________________________
     
@@ -76,8 +76,9 @@ class Layer:
         tot.append(x)
       tot = sum(tot) / len(tot)
       tot += bias
+      res = tot
       tot = self.activation.comp(tot)
-      return tot
+      return tot, res
   
 #_________________________________
     
@@ -114,8 +115,9 @@ class Layer:
         tot.append(x)
       tot = max(tot)
       tot += bias
+      res = tot
       tot = self.activation.comp(tot)
-      return tot
+      return tot, res
     
 #_________________________________
     
@@ -157,8 +159,9 @@ class Layer:
         tot.append(x)
       tot = min(tot)
       tot += bias
+      res = tot
       tot = self.activation.comp(tot)
-      return tot
+      return tot, res
       
 #_________________________________
     
@@ -198,8 +201,9 @@ class Layer:
       for i in neuron_list:
         tot += i
       tot += bias
+      res = tot
       tot = self.activation.comp(tot)
-      return tot
+      return tot, res
       
 #_________________________________
     
@@ -234,8 +238,9 @@ class Layer:
       for i in neuron_list:
         tot -= i
       tot += bias
+      res = tot
       tot = self.activation.comp(tot)
-      return tot
+      return tot, res
       
 #_________________________________
     
@@ -270,8 +275,9 @@ class Layer:
       for i in neuron_list:
         tot *= i
       tot += bias
+      res = tot
       tot = self.activation.comp(tot)
-      return tot
+      return tot, res
       
 #_________________________________
     
@@ -307,7 +313,7 @@ class Layer:
         x = self.activation.comp(i)
         tot.append(x)
       tot = sum(tot) / len(tot)
-      return tot
+      return tot, tot
       
 #_________________________________
     
