@@ -20,7 +20,7 @@ Activation ->
   softsign
   swish
   prelu
-  softmax
+  #softmax
 """
 class Activation:
   class sigmoid:
@@ -34,6 +34,10 @@ class Activation:
 
 #______________________________________________________________________
 
+    def grad_comp(value):
+      return (Activation.sigmoid.comp(value) * (1 - Acivation.sigmoid.comp(value)))
+#______________________________________________________________________
+
   class sigmoid_zero_to_one:
     def comp(value):
       if value > 0:
@@ -42,6 +46,14 @@ class Activation:
       else:
         return 0
 
+#______________________________________________________________________
+
+    def grad_comp(value):
+      res = Activation.sigmoid.grad_comp(value):
+      if value > 0:
+       return res
+      else:
+       return 0
 #______________________________________________________________________
 
   class binary_step:
@@ -58,6 +70,10 @@ class Activation:
 
 #______________________________________________________________________
 
+    def grad_comp(value):
+      return 0
+#______________________________________________________________________
+
   class relu:
     def comp(value):
       if value > 0:
@@ -65,6 +81,13 @@ class Activation:
       else: 
         return 0
   
+#______________________________________________________________________
+
+    def grad_comp(value):
+      if value > 0:
+        return 1
+      else:
+        return 0
 #______________________________________________________________________
 
   class leaky_relu:
@@ -76,11 +99,22 @@ class Activation:
   
 #______________________________________________________________________
 
+    def grad_comp(value):
+      if value > 0:
+        return 1
+      else:
+        return 0.01
+#______________________________________________________________________
+
   class tanh:
     def comp(value):
       res = (2 / (1 + (math.pow(2.7182818284590452353602874713526624977572470936999595749669676277240766303535475945713821785251664274, (-2 * value))))) -1
       return res
 
+#______________________________________________________________________
+
+    def grad_comp(value):
+      return (1 - (Activation.tanh.comp(value) * Activation.tanh.comp(value)))
 #______________________________________________________________________
 
   class elu:
@@ -90,6 +124,14 @@ class Activation:
       else: 
         return -1
   
+#______________________________________________________________________
+
+    def grad_comp(value):
+      if value > 0:
+        return 1
+      else:
+        return 0
+
 #______________________________________________________________________
 
   class hard_sigmoid:
@@ -103,6 +145,15 @@ class Activation:
 
 #______________________________________________________________________
 
+    def grad_comp(value):
+      if value > 1:
+        return 0
+      elif value < -1:
+        return 0
+      else:
+        return 1
+#______________________________________________________________________
+
   class hard_sigmoid_zero_to_one:
     def comp(value):
       if value > 1:
@@ -114,16 +165,35 @@ class Activation:
 
 #______________________________________________________________________
 
+    def grad_comp(value):
+      if value > 1:
+        return 0
+      elif value < 0:
+        return 0
+      else:
+       return 1
+
+#______________________________________________________________________
+
   class exponential:
     def comp(value):
       return math.exp(value)
   
 #______________________________________________________________________
 
+    def grad_comp(value):
+      return math.exp(value)
+
+#______________________________________________________________________
+
   class identity:
     def comp(value):
       return value
   
+#______________________________________________________________________
+
+    def grad_comp(value):
+      return 1
 #______________________________________________________________________
 
   class selu:
@@ -135,16 +205,33 @@ class Activation:
 
 #______________________________________________________________________
 
+    def grad_comp(value):
+      if value > 0:
+        return 1.05070098 
+      else:
+        return 1.05070098 * 1.67326324 * (math.exp(value))
+
+#______________________________________________________________________
+
   class softplus:
     def comp(value):
       return math.log((math.exp(value)) +1)
   
 #______________________________________________________________________
 
+    def grad_comp(value):
+      return 1 / (1 + math.exp(− value))
+
+#______________________________________________________________________
+
   class softsign:
     def comp(value):
       return (value / ((abs(value)) + 1))
 
+#______________________________________________________________________
+
+    def grad_comp(value):
+      return (1 / ( (1 + abs(value)) *(1 + abs(value)) )
 #______________________________________________________________________
 
   class swish:
@@ -156,6 +243,11 @@ class Activation:
         res = -(1 / (1 + math.exp(value)))
         return res * value
   
+#______________________________________________________________________
+
+    def grad_comp(value):
+      return (Activation.swish.comp(value) + (Activation.sigmoid.comp(value) * (1 - Activation.swish.comp(value))))
+              
 #______________________________________________________________________
 
   class prelu:
@@ -170,21 +262,29 @@ class Activation:
     
 #______________________________________________________________________
 
-  class softmax:
-    def comp(vector):
-      res = []
-      def total(vec):
-        vect = []
-        for i in vec:
-          x = math.exp(i)
-          vect.append(x)
-        totalsum = sum(vect)
-        return totalsum
-      tot = total(vector)
-      for i in vector:
-        i = math.exp(i) / tot
-        res.append(i)
-      return res
+    def grad_comp(value):
+      if value > 0:
+        return 1
+      else:
+        return self.multiplier
+
+#______________________________________________________________________
+
+  #class softmax:
+  #  def comp(vector):
+  #    res = []
+  #    def total(vec):
+  #      vect = []
+  #      for i in vec:
+  #        x = math.exp(i)
+  #        vect.append(x)
+  #      totalsum = sum(vect)
+  #      return totalsum
+  #    tot = total(vector)
+  #    for i in vector:
+  #      i = math.exp(i) / tot
+  #      res.append(i)
+  #    return res
 
 #______________________________________________________________________
  
