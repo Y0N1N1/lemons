@@ -1,5 +1,5 @@
 
-name: deployment
+name: deployment 
 
 on: [deployment, release]
 
