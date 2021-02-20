@@ -52,7 +52,7 @@ l4 = Layer.dense(2, activation)
 network = NN.FNN(cross_entropy, adam, acc, [l1, l2, l3, l4])
 
 # train
-data_matrix, label_vector = Tensor([--]), Tensor([--]) # plug data here
+data_matrix, label_matrix = Tensor([--]), Tensor([--]) # plug data here
 
 batch, epoch = 10, 30000
 network.train(batch, epoch, data_matrix, label_vector)
@@ -73,7 +73,7 @@ from lemons.layer import Layer
 from lemons.nn import NN
 From lemons.tensor import Tensor
 
-data_matrix, label_vector = Tensor([--]), Tensor([--]) # plug data here
+data_matrix, label_matrix = Tensor([--]), Tensor([--]) # plug data here
 
 class net:
   def __init__(self):
@@ -100,7 +100,7 @@ class net:
     self.network.save(f'{txt_name}')
   
 first = net()
-first.train(data_matrix, label_vector)
+first.train(data_matrix, label_matrix)
 # prints current loss, epoch, acc
 first.save('model.txt')
 ```
@@ -110,7 +110,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 [MIT](https://choosealicense.com/licenses/mit/)
 Please respect the license.
 ## Architecture
-Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), and labels are a vector label_vector of shape (n). A further diagram on the training process is as follows:
+Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), where each vector is a sample, and labels are vectors, in the label_matrix of shape (n, q). A further diagram on the training process is as follows:
 ----- to do -----
 Lemons's primary network architecture is a rank 4 tensor, where indexing goes as follows: `network[layer][neuron][last layer's neuron][weight]` stored in a simple text file, used for the lightweight and dependencies free ideal of lemons. This network architecture allows for multiple network types, where sometimes there might not be a weight connecting two neurons.
 
