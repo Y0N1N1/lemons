@@ -23,7 +23,7 @@ Activation ->
   #softmax
 """
 class Activation:
-  class sigmoid:
+  class sigmoid: 
     def comp(value):
       if value > 0:
         res = 1 / (1 + math.exp(-value))
