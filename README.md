@@ -126,5 +126,5 @@ network.save('model.txt')
 # will save the weight matrix 
 ```
 
-## To Do
+## To Do 
 https://github.com/Y0N1N1/lemons/projects/2
