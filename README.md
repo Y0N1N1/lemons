@@ -111,7 +111,9 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 Please respect the license.
 ## Architecture
 Lemons's architecture is pretty basic, it works with Tensor objects for data, where the data is a data_matrix of shape (n, m), where each vector is a sample, and labels are vectors, in the label_matrix of shape (n, q). A further diagram on the training process is as follows:
------ to do -----
+<p align="center">
+  <img src="https://github.com/Y0N1N1/lemons/blob/main/docs/assets/images/LEMONS-DESIGN.png?raw=true" height="200" />
+</p>
 Lemons's primary network architecture is a rank 4 tensor, where indexing goes as follows: `network[layer][neuron][last layer's neuron][weight]` stored in a simple text file, used for the lightweight and dependencies free ideal of lemons. This network architecture allows for multiple network types, where sometimes there might not be a weight connecting two neurons.
 
 ## Save
