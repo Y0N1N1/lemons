@@ -10,8 +10,8 @@ Tensor ->
   shape
   dtype
   assign
-  zeros
-  ones
+  #zeros
+  #ones
   eye
 """
 
@@ -59,43 +59,43 @@ class Tensor:
       
 #______________________________________________________________________
 
-  def zeros(self, shape=self.shape, data=[], first=True):
-    # shape must be m x n
-    self.data = data
-    s = math.prod(shape)
-    dt = []
-    for i in range(s):
-      if first:
-        self.data.append(0)
-      else:
-        x = self.data[0:(len(self.data)/s)]
-        dt.append(x)
-        for i in range(len(self.data)/s):
-          self.data.pop(0)
-    if not first:
-      self.data = dt
-    shape.pop()
-    self.data = Tensor.assign_zeros(shape=shape, data=self.data, first=false)
+  #def zeros(self, shape=self.shape, data=[], first=True):
+  #  # shape must be m x n
+  #  self.data = data
+  #  s = math.prod(shape)
+  #  dt = []
+  #  for i in range(s):
+  #    if first:
+  #      self.data.append(0)
+  #    else:
+  #      x = self.data[0:(len(self.data)/s)]
+  #      dt.append(x)
+  #      for i in range(len(self.data)/s):
+  #        self.data.pop(0)
+  #  if not first:
+  #    self.data = dt
+  #  shape.pop()
+  #  self.data = Tensor.assign_zeros(shape=shape, data=self.data, first=false)
 
 #______________________________________________________________________
 
-  def ones(self, shape=self.shape, data=[], first=True):
-    # shape must be m x n
-    self.data = data
-    s = math.prod(shape)
-    dt = []
-    for i in range(s):
-      if first:
-        self.data.append(1)
-      else:
-        x = self.data[0:(len(self.data)/s)]
-        dt.append(x)
-        for i in range(len(self.data)/s):
-          self.data.pop(0)
-    if not first:
-      self.data = dt
-    shape.pop()
-    self.data = Tensor.assign_zeros(shape=shape, data=self.data, first=false)
+  #def ones(self, shape=self.shape, data=[], first=True):
+  #  # shape must be m x n
+  #  self.data = data
+  #  s = math.prod(shape)
+  #  dt = []
+  #  for i in range(s):
+  #    if first:
+  #      self.data.append(1)
+  #    else:
+  #      x = self.data[0:(len(self.data)/s)]
+  #      dt.append(x)
+  #      for i in range(len(self.data)/s):
+  #        self.data.pop(0)
+  #  if not first:
+  #    self.data = dt
+  #  shape.pop()
+  #  self.data = Tensor.assign_zeros(shape=shape, data=self.data, first=false)
     
 #______________________________________________________________________
 
