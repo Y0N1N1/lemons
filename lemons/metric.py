@@ -5,6 +5,26 @@ import random
 """
 Metric ->
   acc 
+  squared
+  absolute
+  huber
+  epsilon_insensitive
+  epsilon_insensitive_squared
+  absolute_percentage
+  squared_logarithmic
+  squared_custom_logarithmic
+  locarithmic_cosh
+  binary_cross_entropy
+  cross_entropy
+  custom_log_cross_entropy
+  poisson 
+  kl_divergence
+  hinge
+  leaky_hinge
+  squared_hinge
+  squared_leaky_hinge
+  categorical_hinge
+  leaky_categorical_hinge
 """
 class Metric:
   class acc: 
