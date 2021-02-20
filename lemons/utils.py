@@ -26,7 +26,7 @@ class Utils:
       dimensions = len(point1)
     else:
       wrong_dim.custom()
-    distance = 0.0
+    distance = 0.0 
     for i in range(dimensions):
       sub = p1[i] - p2[i]
       distance += (sub * sub)
