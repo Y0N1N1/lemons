@@ -31,27 +31,28 @@ class Loss:
     def __init__(self):
       self.il = False
       
-    def comp(y_wanted, y_predicted):
-      return (y_wanted - y_predicted) * (y_wanted - y_predicted)
+    def comp(self, y_wanted, y_predicted):
+      return (y_predicted - y_wanted) * (y_predicted - y_wanted)
     
-    def grad_comp(value):
-      
- 
-  
+    def grad_comp(self, y_wanted, y_predicted):
+      return ( 2 * (y_predicted - y_wanted) )
+    
 #______________________________________________________________________
  
   class absolute:
     def __init__(self):
       self.il = False
       
-    def comp(y_wanted, y_predicted):
-      res = y_wanted - y_predicted
+    def comp(self, y_wanted, y_predicted):
+      res = y_predicted - y_wanted
       if res > 0:
         return res
       else: 
         return -res
-
-  
+      
+    def grad_comp(self, y_wanted, y_predicted):
+      return 1
+    
 #______________________________________________________________________
  
   class huber:
@@ -66,8 +67,15 @@ class Loss:
         return squared
       else: 
         return absolute
-
-  
+      
+    def grad_comp(self, y_wanted, y_predicted):
+      squared = Loss.squared.comp(y_wanted, y_predicted)
+      absolute = Loss.absolute.comp(y_wanted, y_predicted)
+      if absolute < self.rate:
+        return Loss.squared.grad_comp(y_wanted, y_predicted)
+      else: 
+        return Loss.absolute.grad_comp(y_wanted, y_predicted)
+      
 #______________________________________________________________________
  
   class epsilon_insensitive:
@@ -79,7 +87,7 @@ class Loss:
     def comp(self, y_wanted, y_predicted):
       bot = self.bottom
       rat = self.rate
-      sub = y_wanted - y_predicted
+      sub = y_predicted - y_wanted
       if sub >= 0:
         if sub > rat:
           return sub
@@ -91,7 +99,22 @@ class Loss:
           return res
         else:
           return bot
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      bot = self.bottom
+      rat = self.rate
+      sub = y_predicted - y_wanted
+      if sub >= 0:
+        if sub > rat:
+          return 1
+        else:
+          return 0
+      else:
+        res = abs(sub)
+        if res > rat:
+          return 1
+        else:
+          return 0
   
 #______________________________________________________________________
  
@@ -104,7 +127,7 @@ class Loss:
     def comp(self, y_wanted, y_predicted):
       bot = self.bottom
       rat = self.rate
-      sub = y_wanted - y_predicted
+      sub = y_predicted - y_wanted
       if sub >= 0:
         if sub > rat:
           return (sub * sub)
@@ -116,7 +139,22 @@ class Loss:
           return (res * res)
         else:
           return bot
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      bot = self.bottom
+      rat = self.rate
+      sub = y_predicted - y_wanted
+      if sub >= 0:
+        if sub > rat:
+          return  (2*(y_predicted - y_wanted))
+        else:
+          return 0
+      else:
+        res = abs(sub)
+        if res > rat:
+          return (2*((y_predicted - y_wanted) / abs(y_predicted - y_wanted) ) ) 
+        else:
+          return 0
   
 #______________________________________________________________________
  
@@ -124,9 +162,11 @@ class Loss:
     def __init__(self):
       self.il = False
       
-    def comp(y_wanted, y_predicted):
-      return 100 * (abs(y_wanted - y_predicted)/y_wanted)
-
+    def comp(self, y_wanted, y_predicted):
+      return 100 * (abs(y_predicted - y_wanted)/y_wanted)
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      return 100 * ( ((y_predicted - y_wanted) / abs(y_predicted - y_wanted)) /y_wanted)
   
 #______________________________________________________________________
  
@@ -134,9 +174,11 @@ class Loss:
     def __init__(self):
       self.il = False
       
-    def comp(y_wanted, y_predicted):
+    def comp(self, y_wanted, y_predicted):
       return ((math.log(y_wanted + 1))*(math.log(y_wanted + 1))-(math.log(y_predicted + 1))
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      return (−(1/(y_predicted+1) ) )
   
 #______________________________________________________________________
  
@@ -147,7 +189,9 @@ class Loss:
       
     def comp(self, y_wanted, y_predicted):
       return ((math.log(y_wanted + 1,self.custom_base))*(math.log(y_wanted + 1,self.custom_base)))-(math.log(y_predicted + 1,self.custom_base))
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      return (-(1/(math.log(self.custom_base) *(y_predicted + 1))))
   
 #______________________________________________________________________
  
@@ -155,12 +199,14 @@ class Loss:
     def __init__(self):
       self.il = False
               
-    def comp(y_wanted, y_predicted):
+    def comp(self, y_wanted, y_predicted):
       val = y_predicted - y_wanted
       ex = math.exp(val)
       mex = math.exp(-val)
       return math.log((ex+mex)/2)
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      ###############################
 
   
 #______________________________________________________________________
@@ -169,12 +215,14 @@ class Loss:
     def __init__(self):
       self.il = False
    
-    def comp(y_wanted, y_predicted):
+    def comp(self, y_wanted, y_predicted):
       if y_predicted == 1:
         return -math.log(y_wanted)
       else:
         return -math.log(1 - y_wanted)
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
 
 #______________________________________________________________________
  
@@ -194,7 +242,9 @@ class Loss:
         else:
           sum_list.append(0)
       return -sum(sum_list)
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -214,7 +264,9 @@ class Loss:
         else:
           sum_list.append(0)
       return -sum(sum_list)
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
   
@@ -222,9 +274,11 @@ class Loss:
     def __init__(self):
       self.il = False
               
-    def comp(y_wanted, y_predicted):
+    def comp(self, y_wanted, y_predicted):
       return (y_predicted - (y_wanted * math.log(y_predicted)))
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -232,9 +286,11 @@ class Loss:
     def __init__(self):
       self.il = False
               
-    def comp(y_wanted, y_predicted):
+    def comp(self, y_wanted, y_predicted):
       return (y_wanted * math.log(y_wanted / y_predicted))
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -242,7 +298,7 @@ class Loss:
     def __init__(self):
       self.il = False
               
-    def comp(y_wanted, y_predicted):
+    def comp(self, y_wanted, y_predicted):
       #y_wanted MUST be either -1 or 1 (-1: 0, 1: 1). we will auto convert 0 to -1.
       if y_wanted == 0:
         first = 1 - (-1 * y_predicted)
@@ -258,7 +314,9 @@ class Loss:
           return first
         else:
           return second
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -283,7 +341,9 @@ class Loss:
           return first
         else:
           return second
-  
+      
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -291,7 +351,7 @@ class Loss:
     def __init__(self):
       self.il = False
               
-    def comp(y_wanted, y_predicted):
+    def comp(self, y_wanted, y_predicted):
       #y_wanted MUST be either -1 or 1 (-1: 0, 1: 1). we will auto convert 0 to -1.
       if y_wanted == 0:
         first = (1 - (-1 * y_predicted))*(1 - (-1 * y_predicted))
@@ -307,7 +367,9 @@ class Loss:
           return first
         else:
           return second
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -332,7 +394,9 @@ class Loss:
           return first
         else:
           return second
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -340,7 +404,7 @@ class Loss:
     def __init__(self):
       self.il = True
               
-    def comp(y_wanted_list, y_predicted_list):
+    def comp(self, y_wanted_list, y_predicted_list):
       neg = []
       pos = []
       for i in y_wanted_list:
@@ -352,7 +416,9 @@ class Loss:
       pos_val = sum(pos)
       res = neg_max - pos_val + 1
       return max(res, 0)
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
   
 #______________________________________________________________________
  
@@ -373,7 +439,9 @@ class Loss:
       pos_val = sum(pos)
       res = neg_max - pos_val + 1
       return max(res, self.rate)
-
+    
+    def grad_comp(self, y_wanted, y_predicted):
+      
 #______________________________________________________________________
  
 #end
