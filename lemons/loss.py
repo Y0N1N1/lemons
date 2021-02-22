@@ -206,7 +206,9 @@ class Loss:
       return math.log((ex+mex)/2)
     
     def grad_comp(self, y_wanted, y_predicted):
-      ###############################
+      ex = math.exp(1)
+      mex = -math.exp(-1)
+      return (1/((ex+mex)/2))
 
   
 #______________________________________________________________________
@@ -222,7 +224,7 @@ class Loss:
         return -math.log(1 - y_wanted)
     
     def grad_comp(self, y_wanted, y_predicted):
-      
+      return 0
 
 #______________________________________________________________________
  
