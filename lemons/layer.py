@@ -13,7 +13,7 @@ Layer ->
   multiply
   activation
 """
-
+ 
 class Layer:
   class dense:
     def __init__(self, size, activation):
