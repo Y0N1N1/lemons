@@ -238,14 +238,16 @@ class Loss:
       for i in range(self.number_of_classes):
         wan = y_meets_wanted_list[i]
         pred = y_predicted_list[i]
-        if wan == 1:
-          res = math.log(pred)
-          sum_list.append(res)
-        else:
-          sum_list.append(0)
+        sum_list.append(wan*math.log(pred))
       return -sum(sum_list)
     
-    def grad_comp(self, y_wanted, y_predicted):
+    def grad_comp(self, y_meets_wanted_list, y_predicted_list):
+      sum_list = [] 
+      for i in range(self.number_of_classes):
+        wan = y_meets_wanted_list[i]
+        pred = y_predicted_list[i]
+        sum_list.append(wan*(1/pred))
+      return -sum(sum_list)
       
   
 #______________________________________________________________________
@@ -260,15 +262,17 @@ class Loss:
       for i in range(self.number_of_classes):
         wan = y_meets_wanted_list[i]
         pred = y_predicted_list[i]
-        if wan == 1:
-          res = math.log(pred,self.base)
-          sum_list.append(res)
-        else:
-          sum_list.append(0)
+        sum_list.append(wan*math.log(pred, self.base))
       return -sum(sum_list)
     
     def grad_comp(self, y_wanted, y_predicted):
-      
+      self, y_meets_wanted_list, y_predicted_list):
+      sum_list = []
+      for i in range(self.number_of_classes):
+        wan = y_meets_wanted_list[i]
+        pred = y_predicted_list[i]
+        sum_list.append(wan*((1/pred)*(1/self.base)))
+      return -sum(sum_list)
   
 #______________________________________________________________________
   
