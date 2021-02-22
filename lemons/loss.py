@@ -284,7 +284,7 @@ class Loss:
       return (y_predicted - (y_wanted * math.log(y_predicted)))
     
     def grad_comp(self, y_wanted, y_predicted):
-      
+      return (1- (y_wanted/ y_predicted))
   
 #______________________________________________________________________
  
@@ -296,7 +296,7 @@ class Loss:
       return (y_wanted * math.log(y_wanted / y_predicted))
     
     def grad_comp(self, y_wanted, y_predicted):
-      
+      return - (y_wanted / y_predicted)
   
 #______________________________________________________________________
  
@@ -322,7 +322,7 @@ class Loss:
           return second
     
     def grad_comp(self, y_wanted, y_predicted):
-      
+      ##################
   
 #______________________________________________________________________
  
