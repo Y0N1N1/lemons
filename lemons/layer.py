@@ -49,7 +49,7 @@ class Layer:
 #_________________________________
     
     def bias_grad_comp(self, weight_list, neuron_list, bias):
-      return 0
+      return 1
   
 #______________________________________________________________________
 
@@ -88,7 +88,7 @@ class Layer:
 #_________________________________
     
     def bias_grad_comp(self, weight, neuron, bias):
-      return 0
+      return 1
   
 #______________________________________________________________________
 
@@ -132,7 +132,7 @@ class Layer:
 #_________________________________
     
     def bias_grad_comp(self, weight, neuron, bias):
-      return 0
+      return 1
   
 #______________________________________________________________________
 
@@ -176,7 +176,7 @@ class Layer:
 #_________________________________
     
     def bias_grad_comp(self, weight, neuron, bias):
-      return 0
+      return 1
   
 #______________________________________________________________________
 
@@ -213,7 +213,7 @@ class Layer:
 #_________________________________
     
     def bias_grad_comp(self, weight, neuron, bias):
-      return 0
+      return 1
   
 #______________________________________________________________________
 
@@ -250,7 +250,7 @@ class Layer:
 #_________________________________
     
     def bias_grad_comp(self, weight, neuron, bias):
-      return 0
+      return 1
   
 #______________________________________________________________________
 
@@ -287,7 +287,7 @@ class Layer:
 #_________________________________
     
     def bias_grad_comp(self, weight, neuron, bias):
-      return 0
+      return 1
   
 #______________________________________________________________________
 
