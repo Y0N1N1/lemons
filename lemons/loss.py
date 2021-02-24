@@ -322,7 +322,20 @@ class Loss:
           return second
     
     def grad_comp(self, y_wanted, y_predicted):
-      ##################
+      if y_wanted == 0:
+        first = 1 - (-1 * y_predicted)
+        second = 0
+        if first > second:
+          return -1
+        else:
+          return 0
+      else:
+        first = 1 - (y_wanted * y_predicted)
+        second = 0
+        if first > second:
+          return -y_wanted
+        else:
+          return 0
   
 #______________________________________________________________________
  
@@ -349,7 +362,20 @@ class Loss:
           return second
       
     def grad_comp(self, y_wanted, y_predicted):
-      
+       if y_wanted == 0:
+        first = 1 - (-1 * y_predicted)
+        second = self.rate
+        if first > second:
+          return -1
+        else:
+          return 0
+      else:
+        first = 1 - (y_wanted * y_predicted)
+        second = 0
+        if first > second:
+          return -y_wanted
+        else:
+          return 0
   
 #______________________________________________________________________
  
@@ -375,7 +401,20 @@ class Loss:
           return second
     
     def grad_comp(self, y_wanted, y_predicted):
-      
+       if y_wanted == 0:
+        first = (1 - (-1 * y_predicted))*(1 - (-1 * y_predicted))
+        second = 0
+        if first > second:
+          return -(-1*-1)
+        else:
+          return 0
+      else:
+        first = (1 - (y_wanted * y_predicted))*(1 - (y_wanted * y_predicted))
+        second = 0
+        if first > second:
+          return -(-y_wanted*-y_wanted)
+        else:
+          return 0
   
 #______________________________________________________________________
  
@@ -402,7 +441,20 @@ class Loss:
           return second
     
     def grad_comp(self, y_wanted, y_predicted):
-      
+       if y_wanted == 0:
+        first = (1 - (-1 * y_predicted))*(1 - (-1 * y_predicted))
+        second = self.rate
+        if first > second:
+          return -(-1*-1)
+        else:
+          return 0
+      else:
+        first = (1 - (y_wanted * y_predicted))*(1 - (y_wanted * y_predicted))
+        second = 0
+        if first > second:
+          return -(-y_wanted*-y_wanted)
+        else:
+          return 0
   
 #______________________________________________________________________
  
