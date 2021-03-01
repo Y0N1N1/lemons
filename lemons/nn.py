@@ -18,8 +18,7 @@ NN ->
     train
     test
     predict
-Available NNs ->
-  FNN
+    save
 """
 class NN:
   class FNN:
