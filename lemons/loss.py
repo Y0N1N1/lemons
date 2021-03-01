@@ -265,7 +265,7 @@ class Loss:
         sum_list.append(wan*math.log(pred, self.base))
       return -sum(sum_list)
     
-    def grad_comp(self, y_wanted, y_predicted):
+    def grad_comp(self, y_meets_wanted_list, y_predicted_list):
       self, y_meets_wanted_list, y_predicted_list):
       sum_list = []
       for i in range(self.number_of_classes):
@@ -465,9 +465,9 @@ class Loss:
     def comp(self, y_wanted_list, y_predicted_list):
       neg = []
       pos = []
-      for i in y_wanted_list:
+      for a, i in enumerate(y_wanted_list):
         y_wanted = i
-        y_predicted = y_predicted_list[i]
+        y_predicted = y_predicted_list[a]
         neg.append((1-y_wanted)*y_predicted)
         pos.append(y_wanted*y_predicted)
       neg_max = max(neg)
@@ -475,8 +475,27 @@ class Loss:
       res = neg_max - pos_val + 1
       return max(res, 0)
     
-    def grad_comp(self, y_wanted, y_predicted):
-      
+    def grad_comp(self, y_wanted_list, y_predicted_list):
+      neg = []
+      pos = []
+      nnn = []
+      ppp = []
+      for a, i in enumerate(y_wanted_list):
+        y_wanted = i
+        y_predicted = y_predicted_list[a]
+        neg.append((1-y_wanted)*y_predicted)
+        nnn.append(1-y_wanted)
+        pos.append(y_wanted*y_predicted)
+        ppp.append(y_wanted)
+      neg_max = max(neg)
+      xxx = [i for i, x in enumerate(neg) if x == max(neg)]
+      pos_val = sum(pos)
+      res = neg_max - pos_val + 1
+      if res > 0:
+        rrr = (1-y_wanted_list[xxx[1]])  - sum(y_wanted_list)
+        return rrr
+      else:
+        return 0
   
 #______________________________________________________________________
  
@@ -498,8 +517,27 @@ class Loss:
       res = neg_max - pos_val + 1
       return max(res, self.rate)
     
-    def grad_comp(self, y_wanted, y_predicted):
-      
+    def grad_comp(self, y_wanted_list, y_predicted_list):
+      neg = []
+      pos = []
+      nnn = []
+      ppp = []
+      for a, i in enumerate(y_wanted_list):
+        y_wanted = i
+        y_predicted = y_predicted_list[a]
+        neg.append((1-y_wanted)*y_predicted)
+        nnn.append(1-y_wanted)
+        pos.append(y_wanted*y_predicted)
+        ppp.append(y_wanted)
+      neg_max = max(neg)
+      xxx = [i for i, x in enumerate(neg) if x == max(neg)]
+      pos_val = sum(pos)
+      res = neg_max - pos_val + 1
+      if res > self.rate:
+        rrr = (1-y_wanted_list[xxx[1]])  - sum(y_wanted_list)
+        return rrr
+      else:
+        return 0
 #______________________________________________________________________
  
 #end
