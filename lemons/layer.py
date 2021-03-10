@@ -30,6 +30,19 @@ class Layer:
       return self.activation.__name__
  
 #_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
+#_________________________________
      
     def comp(self, weight_list, neuron_list, bias):
       tot = 0
@@ -66,7 +79,20 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
- 
+  
+#_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
 #_________________________________
 
     def comp(self, weight_list, neuron_list, bias):
@@ -105,7 +131,20 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
- 
+  
+#_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
 #_________________________________
     
     def comp(self, weight_list, neuron_list, bias):
@@ -149,7 +188,20 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
- 
+  
+#_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
 #_________________________________
     
     def comp(self, weight_list, neuron_list, bias):
@@ -193,7 +245,20 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
- 
+  
+#_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
 #_________________________________
     
     def comp(self, weight_list, neuron_list, bias):
@@ -230,7 +295,20 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
- 
+  
+#_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
 #_________________________________
     
     def comp(self, weight_list, neuron_list, bias):
@@ -267,7 +345,20 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
- 
+  
+#_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
 #_________________________________
     
     def comp(self, weight_list, neuron_list, bias):
@@ -304,7 +395,20 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
-
+ 
+#_________________________________
+  
+    def layer_weight_tensor(self, last_layer_size):
+      l = []
+      for i in range(self.size):
+        x = []
+        for i in range(last_layer_size):
+          y = random.random()
+          w = [y]
+          x.append(w)
+        l.append(x)
+      return l
+  
 #_________________________________
     
     def comp(self, weight_list, neuron_list, bias):
