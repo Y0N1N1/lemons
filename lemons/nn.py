@@ -22,79 +22,113 @@ NN ->
 """
 class NN:
   class FNN:
-    def __init__(self, loss: Loss, optimizer: Optimizer, metric: Metric, layer_list = []):
+    def __init__(self, input_length, loss: Loss, optimizer: Optimizer, metric: Metric, layer_list = []):
+      # tools
       self.loss, self.optimizer, self.metric = loss, optimizer, metric
+      # layers
       self.layer_list = layer_list
+      # weight tensor
       self.weight_tensor = []
+      # make weight tensor
+      length = len(self.layer_list)
+      first = True
+      for i in range(length):
+        ll = 0
+        if first:
+          ll = input_length
+          first = False
+        else:
+          ll = self.layer_list[i-1].size()
+        l = self.layer_list[i+1].layer_weight_tensor(ll)
+        self.weight_tensor.append(l)
+      # bias tensor
       self.bias_tensor = []
-      for layer in layer_list:
-        x = layer.layer_weight_tensor()
-        self.weight_tensor.append(x)
+      # make bias tensor
+      for layer in self.layer_list:
         self.bias_tensor.append(random())
+      # stuff for backprop
       self.layer_results = []
       self.layer_results_after_activation = []
+      # make ^^^
+      for i in range(length - 1):
+        ll = self.layer_list[i].size()
+        lll = self.layer_list[i+1].size()
+        l = []
+        for i in range(lll):
+          x = []
+          for i in range(ll):
+            x.append([])
+          l.append(x)
+        self.layer_results.append(l)
+        self.layer_results_after_activation.append(l)
+      # done
 
 
     def view(self):
       print("Model: FNN")
       print("_________________________________________________________________")
       print("layer______________________activation_____________________size___")
-      for i in range(self.layer_count):
+      for i in range(len(self.layer_list)):
         layer = self.layer_list[i].__name__
         activation = self.layer_list[i].activation()
         size = self.layer_size_list[i]
         print(f"{layer}                      {activation}                     {size}   ")
         print("_________________________________________________________________")
       print("_________________________________________________________________")
-      print(f"optimizer: {self.optimizer}, loss: {self.loss}, metric: {self.metric}")
+      print(f"optimizer: {self.optimizer.__name__}, loss: {self.loss.__name__}, metric: {self.metric.__name__}")
       print("_________________________________________________________________")
     
     
     def back(self):
-      # BACK WEIGHT GRADIENT
-      grad_list = []
-      for layer in self.network:
-        layer_grad_list = []
-        for weight in layer:
-          weight_grad_list = []
-          for data_val in self.layer_results[self.network.index(layer)][layer.index(weight)]:
-            data_val_after_activation = self.layer_results_after_activation[self.network.index(layer)][layer.index(weight)][self.layer_results[self.network.index(layer)][layer.index(weight)].index(data_val)]
-            weight_val_grad = (self.loss.grad_comp(data_val_after_activation)) * (self.layer_list[self.network.index(layer)].activation.grad_comp(data_val)) * (self.layer_list[self.network.index(layer)].grad_comp(weight))
-            weight_grad_list.append(weight_val_grad)
-          weight_grad = sum(weight_grad_list) / len(weight_grad_list)
-          layer_grad_list.append(weight_grad)
-        grad_list.append(layer_grad_list)
-      for grad_layer in grad_list:
-        for grad in grad_layer:
-          optim = self.optimizer.comp(grad)
-          self.network[grad_list.index(grad_layer)][grad_layer.index(grad)] -= optim
-      # BACK BIAS
-      bias_grad_list =  []
-      for layer in self.layer_results:
-        bias = self.bias[self.layer_results.index(layer)]
-        single_bias_grad_list = []
-        for point in layer:
-          for data_val in point:
-            data_val_after_activation = self.layer_results_after_activation[self.layer_results.index(layer)][layer.index(data_val)][point.index(data_val)]
-            single_bias_grad = (self.loss.grad_comp(data_val_after_actvation)) * (self.layer_list[self.layer_results.index(layer)].activation.grad_comp(data_val)) * (self.layer_list[self.layer_results.index(layer)].bias_grad_comp(bias))
-            single_bias_grad_list.append(single_bias_grad)
-        bias_grad = sum(single_bias_grad_list) / len(single_bias_grad_list)
-        bias_grad_list.append(bias_grad)
-      for bias in self.bias:
-        optim = self.optimizer.comp(bias_grad_list[self.bias.index(bias)])
-        self.bias[self.bias.index(bias)] -= optim
+      # Back weight
+      
+      # Back bias
+      
       
     
     def foward(self, data_vector):
-      # data_vector must be of shape (n), a vector
-      # foward will return a label_vector
-      
-      # comp everything
-      # store layer_results_after_activation, layer_results
-      # return label_vector
-      for layer in self.network:
-        for weight in layer:
-          pass # to do 
+      # vector being fowarded through the network
+      neuron_vals = data_vector
+      # iterating through each layer
+      for lindx, layer in enumerate(self.layer_list):
+        # new vector
+        new_neuron_vals = []
+        # iterating through each neuron
+        for indx, neuron in enumerate(neuron_vals):
+          previous_neuron_index = []
+          # create a weight vector
+          weight_vector = []
+          for last_neuron_index, last_neuron in enumerate(self.weight_tensor[lindx][indx]):
+            if len(last_neuron) == 0:
+              pass
+            else:
+              previous_neuron_index.append(last_neuron_index)
+              weight_vector.append(last_neuron[0])
+          # create neuron vector
+          neuron_vector = []
+          for last_neuron_index in previous_neuron_index:
+            neuron_vector.append(neuron_vals[last_neuron_index])
+          # get bias
+          bias = self.bias_tensor[lindx]
+          # calculate new value
+          result, result_before_activation = layer.comp(weight_vector, neuron_vector, bias)
+          # append result to new_neuron_vals
+          new_neuron_vals.append(result)
+          # layer_results_after_activation append values
+          for last_neuron_index, last_neuron in enumerate(self.layer_results_after_activation[lindx][indx]):
+            for chosen_indexes in previous_neuron_index:
+              if chosen_indexes == last_neuron_index:
+                last_neuron.append(result)
+          # layer_results append values
+          for last_neuron_index, last_neuron in enumerate(self.layer_results[lindx][indx]):
+            for chosen_indexes in previous_neuron_index:
+              if chosen_indexes == last_neuron_index:
+                last_neuron.append(result_before_activation)
+        # updating vector
+        neuron_vals = new_neuron_vals
+      return neuron_vals
+      # stores  layer_results_after_activation, layer_results
+      # returns label_vector
         
       
       
