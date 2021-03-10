@@ -25,31 +25,14 @@ class NN:
     def __init__(self, loss: Loss, optimizer: Optimizer, metric: Metric, layer_list = []):
       self.loss, self.optimizer, self.metric = loss, optimizer, metric
       self.layer_list = layer_list
-      self.network = []
-      first = True
-      for _ in self.layer_list:
-        weight_count = 1
-        if first:
-          weight_count = _.size()
-          first = False
-        else:
-          weight_count = _.size() * self.layer_list[self.layer_list.index[_] - 1].size()
-        layer = [random() for i in range(weight_count)]
-        self.network.append(layer)
-        # network will look like a regular matrix
-        # to access a layer: network[layer][weight]
-      self.bias = []
-      for i in self.layer_list:
-        self.bias.append(random())
+      self.weight_tensor = []
+      self.bias_tensor = []
+      for layer in layer_list:
+        x = layer.layer_weight_tensor()
+        self.weight_tensor.append(x)
+        self.bias_tensor.append(random())
       self.layer_results = []
       self.layer_results_after_activation = []
-      for l in self.network:
-        x = []
-        for w in l:
-          y = []
-          x.append(y)
-        self.layer_results.append(x)
-        self.layer_results_after_activation.append(x)
 
 
     def view(self):
@@ -66,9 +49,6 @@ class NN:
       print(f"optimizer: {self.optimizer}, loss: {self.loss}, metric: {self.metric}")
       print("_________________________________________________________________")
     
-    def add(self, layer: Layer):
-      self.layer_list.append(layer)
-      self.bias.append(random())
     
     def back(self):
       # BACK WEIGHT GRADIENT
