@@ -28,7 +28,7 @@ class Layer:
     
     def activation(self):
       return self.activation.__name__
- 
+  
 #_________________________________
   
     def layer_weight_tensor(self, last_layer_size):
