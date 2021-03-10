@@ -61,7 +61,7 @@ network.train(batch, epoch, data_matrix, label_vector)
 # save
 network.save('model.txt')
 # model.txt must already be a file
-# will save the weight matrix 
+# will save the weight tensor, the bias tensor and the layers/activations/loss/optimizer/metric names
 ```
 Or if you prefer
 ```python
@@ -121,13 +121,12 @@ network[layer][neuron][last layer's neuron][weight]
 stored in a simple text file, used for the lightweight and dependencies free ideal of lemons. This network architecture allows for multiple network types, where sometimes there might not be a weight connecting two neurons.
 
 ## Save
-lemons likes to keep it simple and save the network as a weight matrix on some txt file, they are easy to operate in and don't require any modules, example
+lemons likes to keep it simple and save the network as the weight tensor, the bias tensor and the names of the layers/activations/loss/optimizer/metric on some txt file, they are easy to operate in and don't require any modules, example
 ```python
 # save
 ...
 network.save('model.txt')
 # model.txt must already be a file
-# will save the weight matrix 
 ```
 
 ## To Do 
