@@ -49,7 +49,7 @@ class Activation:
 #______________________________________________________________________
 
     def grad_comp(value):
-      res = Activation.sigmoid.grad_comp(value):
+      res = Activation.sigmoid.grad_comp(value)
       if value > 0:
        return res
       else:
