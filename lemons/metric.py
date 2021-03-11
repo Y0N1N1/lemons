@@ -149,7 +149,7 @@ class Metric:
       self.il = False
       
     def comp(y_wanted, y_predicted):
-      return ((math.log(y_wanted + 1))*(math.log(y_wanted + 1))-(math.log(y_predicted + 1))
+      return ((math.log(y_wanted + 1))*(math.log(y_wanted + 1))-(math.log(y_predicted + 1)))
 
   
 #______________________________________________________________________
