@@ -124,7 +124,7 @@ class NN:
       for lindx, bias in enumerate(self.bias_tensor):
         # bias grad samples
         bias_grad_samples = []
-        for nindx, neuron in enumerate(self.layer_results[bindx]):
+        for nindx, neuron in enumerate(self.layer_results[lindx]):
           for lnindx, last_neuron in enumerate(neuron):
             for sindx, sample in enumerate(last_neuron):
               bias = self.bias_tensor[lindx]
@@ -140,6 +140,7 @@ class NN:
       # stuff for next backprop
       self.layer_results = []
       self.layer_results_after_activation = []
+      length = len(self.layer_list)
       # make ^^^
       for i in range(length - 1):
         ll = self.layer_list[i].size()
@@ -241,7 +242,7 @@ class NN:
             loss = self.loss.comp(label, predicted_label)
             metric = self.metric.comp(label, predicted_label)
             # individual progress
-            samples_loss_history.append(loss)
+            sample_loss_history.append(loss)
             sample_metric_history.append(metric)
             if sample_show:
               print(f"--- sample --- loss: {loss} metric: {metric} progress: {sindx/len(data_batch)}%")
@@ -271,9 +272,9 @@ class NN:
         predicted = self.foward(sample)
         right = labels[indx]
         loss = self.loss.comp(right, predicted)
-        metric = self.metric.comp(right_predicted)
+        metric = self.metric.comp(right, predicted)
         loss_history.append(loss)
-        netric_history.append(metric)
+        metric_history.append(metric)
         if show:
           print(f"predicted: {predicted}, actual: {right}")
           print(f"loss: {loss} metric: {metric}")
