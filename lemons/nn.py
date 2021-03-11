@@ -151,7 +151,7 @@ class NN:
         self.layer_results_after_activation.append(l)
       # done
     
-    def foward(self, data_vector):
+    def foward(self, data_vector, store=True):
       # vector being fowarded through the network
       neuron_vals = data_vector
       # iterating through each layer
@@ -179,16 +179,17 @@ class NN:
           result, result_before_activation = layer.comp(weight_vector, neuron_vector, bias)
           # append result to new_neuron_vals
           new_neuron_vals.append(result)
-          # layer_results_after_activation append values
-          for last_neuron_index, last_neuron in enumerate(self.layer_results_after_activation[lindx][indx]):
-            for chosen_indexes in previous_neuron_index:
-              if chosen_indexes == last_neuron_index:
-                self.layer_results_after_activation[lindx][indx][last_neuron_index].append(result)
-          # layer_results append values
-          for last_neuron_index, last_neuron in enumerate(self.layer_results[lindx][indx]):
-            for chosen_indexes in previous_neuron_index:
-              if chosen_indexes == last_neuron_index:
-                self.layer_results[lindx][indx][last_neuron_index].append(result_before_activation)
+          if store:
+            # layer_results_after_activation append values
+            for last_neuron_index, last_neuron in enumerate(self.layer_results_after_activation[lindx][indx]):
+              for chosen_indexes in previous_neuron_index:
+                if chosen_indexes == last_neuron_index:
+                  self.layer_results_after_activation[lindx][indx][last_neuron_index].append(result)
+            # layer_results append values
+            for last_neuron_index, last_neuron in enumerate(self.layer_results[lindx][indx]):
+              for chosen_indexes in previous_neuron_index:
+                if chosen_indexes == last_neuron_index:
+                  self.layer_results[lindx][indx][last_neuron_index].append(result_before_activation)
         # updating vector
         neuron_vals = new_neuron_vals
       return neuron_vals
@@ -233,7 +234,7 @@ class NN:
           for sindx, sample in data_batch:
             # comp stuff
             label = label_batch[sindx]
-            predicted_label = NN.FNN.foward(self, sample)
+            predicted_label = self.foward(sample)
             loss = self.loss.comp(label, predicted_label)
             metric = self.metric.comp(label, predicted_label)
             # individual progress
@@ -255,24 +256,40 @@ class NN:
         epoch_metric_history.append(sum(batch_metric_history)/len(batch_metric_history))
       # end
       print(f"final loss: {epoch_loss_history[-1]}, final metric: {epoch_metric_history[-1]}")
-            
- 
-    def test(self, batch_size, data_matrix : Tensor, label_vector : Tensor):
-      # data must be of shape (n, m), a matrix
-      # label vector must be of shape (n), a vector
-      # data and labels must be in order
-      # test will return a metric and a loss.
-      ##### tqdm
+      # retuns final loss and final metric
+      return epoch_loss_history[-1], epoch_metric_history[-1]
+
+    def test(self, data_tensor : Tensor, label_tensor : Tensor, show=True):
+      # data
+      data = data_tensor.data
+      labels = label_tensor.data
+      loss_history, metric_history = [], []
+      for indx, sample in enumerate(data):
+        predicted = self.foward(sample)
+        right = labels[indx]
+        loss = self.loss.comp(right, predicted)
+        metric = self.metric.comp(right_predicted)
+        loss_history.append(loss)
+        netric_history.append(metric)
+        if show:
+          print(f"predicted: {predicted}, actual: {right}")
+          print(f"loss: {loss} metric: {metric}")
+          print("-")
+      return loss_history, metric_history
       
-    def predict(self, batch_size, data_matrix : Tensor):
-      # data must be of shape (n, m), a matrix
-      # pred will generate a label_vector shaped (n), and that will be the output
-      ###### tqdm
+      
+    def predict(self, input_vector):
+      return self.foward(input_vector)
     
     def save(self, file_name):
-      # file_name must be a txt file in the same directory, lemons will siply write the network weight matrix.
-      with open(f"{file_name}.txt", "w") as f:
-        f.write(f"{self.network}")
+      # file_name must be a txt file in the same directory, lemons will write as follows:
+      #
+      #
+      #
+      #
+      #
+      #
+      
       
       
       
