@@ -369,13 +369,13 @@ class Loss:
           return -1
         else:
           return 0
-      else:
-        first = 1 - (y_wanted * y_predicted)
-        second = 0
-        if first > second:
-          return -y_wanted
-        else:
-          return 0
+       else:
+         first = 1 - (y_wanted * y_predicted)
+         second = 0
+         if first > second:
+           return -y_wanted
+         else:
+           return 0
   
 #______________________________________________________________________
  
