@@ -3,6 +3,7 @@ import os
 import random
 
 """
+NOTE: FNN only works with categorical metrics
 Metric ->
   acc 
   squared
