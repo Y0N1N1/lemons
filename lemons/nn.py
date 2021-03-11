@@ -12,7 +12,6 @@ from random import random
 NN ->
   FNN ->
     view 
-    add 
     back
     foward
     train
@@ -63,7 +62,6 @@ class NN:
         self.layer_results_after_activation.append(l)
       # done
 
-
     def view(self):
       print("Model: FNN")
       print("_________________________________________________________________")
@@ -77,8 +75,7 @@ class NN:
       print("_________________________________________________________________")
       print(f"optimizer: {self.optimizer.__name__}, loss: {self.loss.__name__}, metric: {self.metric.__name__}")
       print("_________________________________________________________________")
-    
-    
+
     def back(self):
       # Back weight
       #     create grad tensor
@@ -137,8 +134,22 @@ class NN:
       #     apply optimizer
       for indx, grad in enumerate(bias_grad_tensor):
         self.bias_tensor[indx] = self.bias_tensor[indx] -self.optimizer.comp(grad)
-      
-      
+      # stuff for next backprop
+      self.layer_results = []
+      self.layer_results_after_activation = []
+      # make ^^^
+      for i in range(length - 1):
+        ll = self.layer_list[i].size()
+        lll = self.layer_list[i+1].size()
+        l = []
+        for i in range(lll):
+          x = []
+          for i in range(ll):
+            x.append([])
+          l.append(x)
+        self.layer_results.append(l)
+        self.layer_results_after_activation.append(l)
+      # done
     
     def foward(self, data_vector):
       # vector being fowarded through the network
@@ -183,32 +194,68 @@ class NN:
       return neuron_vals
       # stores  layer_results_after_activation, layer_results
       # returns label_vector
-        
-      
-      
-    
-    def train(self, batch_size, epochs, data_matrix : Tensor, label_vector : Tensor, show=True):
-      # data must be of shape (n, m), a matrix
-      # label vector must be of shape (n), a vector
-      # data and labels must be in order
+
+    def train(self, batch_size, epochs, data_tensor : Tensor, label_tensor : Tensor, epoch_show=True, batch_show=True, sample_show=False):
+      # data must be a matrix with each row vector being 1 input
+      # label must be a matrix with each row vector being one output
       # show will display:
       # epoch loss, metric, progress
-      # train will output a final loss and metric
+      # train will print a final loss and metric
+      # loss history will be stored on a list on as an object of the network "self.history"
+      old_train_data = data_tensor.data
+      old_train_labels = label_tensor.data
+      lll = len(old_train_data)
+      train_data = []
+      train_labels = []
+      do = True
+      while do:
+        if len(old_train_data) >= batch_size:
+          x = old_train_data[0:batch_size]
+          y = old_train_labels[0:batch_size]
+          for p in range(batch_size):
+            old_train_data.pop(0)
+            old_train_labels.pop(0)
+        else:
+          do = False
+      print(f"given data samples: {lll}, trainable data samples: {lll - len(old_train_data)}")
+      # epoch progress
+      epoch_loss_history = []
+      epoch_metric_history = []
       for epoch in range(epochs):
-        train_data = in_data.data
-        train_labels = labels.data
-        for batch in range(batch_size):
-            item = train_data[0]
-            right = train_labels[0]
-            predicted = foward(item)
-            loss = self.loss.comp(right, predicted)
+        # batch progress
+        batch_loss_history = []
+        batch_metric_history = []
+        for bindx, data_batch in enumerate(train_data):
+          # sample progress
+          sample_loss_history = []
+          sample_metric_history = []
+          label_batch = train_labels[bindx]
+          for sindx, sample in data_batch:
+            # comp stuff
+            label = label_batch[sindx]
+            predicted_label = NN.FNN.foward(self, sample)
+            loss = self.loss.comp(label, predicted_label)
+            metric = self.metric.comp(label, predicted_label)
+            # individual progress
+            samples_loss_history.append(loss)
+            sample_metric_history.append(metric)
+            if sample_show:
+              print(f"--- sample --- loss: {loss} metric: {metric} progress: {sindx/len(data_batch)}%")
+            # perform backprop
+            self.back()
+          # display progress
+          if batch_show:
+              print(f"--- batch --- loss: {sum(sample_loss_history)/len(sample_loss_history)} metric: {sum(sample_metric_history)/len(sample_metric_history)} progress: {bindx/len(train_data)}%")
+          batch_loss_history.append(sum(sample_loss_history)/len(sample_loss_history))
+          batch_metric_history.append(sum(sample_metric_history)/len(sample_metric_history))
+        # display progress
+        if epoch_show:
+            print(f"--- epoch --- loss: {sum(batch_loss_history)/len(batch_loss_history)} metric: {sum(batch_metric_history)/len(batch_metric_history)} progress: {epoch/epochs}%")
+        epoch_loss_history.append(sum(batch_loss_history)/len(batch_loss_history))
+        epoch_metric_history.append(sum(batch_metric_history)/len(batch_metric_history))
+      # end
+      print(f"final loss: {epoch_loss_history[-1]}, final metric: {epoch_metric_history[-1]}")
             
-            train_data.pop(0)
-            train_labels.pop(0)
-            # SOMEHOW PERFORM BACKPROP
-            
-            ##### loss il
-            ##### tqdm
  
     def test(self, batch_size, data_matrix : Tensor, label_vector : Tensor):
       # data must be of shape (n, m), a matrix
