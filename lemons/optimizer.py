@@ -97,7 +97,7 @@ class Optimizer:
       self.optimizer, self.momentum = 0, 1
       
     def comp(self, gradient):
-      orr_gradient = self.optimizer - (self.momentum_decay * self.momentum))
+      orr_gradient = self.optimizer - (self.momentum_decay * self.momentum)
       # https://ruder.io/optimizing-gradient-descent/#:~:text=In%20its%20update%20rule%2C%20Adagrad,%CF%B5%20%E2%8B%85%20g%20t%20%2C%20i%20.
       self.momentum = (self.momentum_decay * self.momentum) + (self.learning_rate * orr_gradient)
       self.optimizer = self.optimizer - self.momentum
