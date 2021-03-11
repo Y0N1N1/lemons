@@ -5,7 +5,7 @@ from lemons.layer import Layer
 from lemons.loss import Loss
 from lemons.optimizer import Optimizer
 from lemons.metric import Metric
-from lemons.activations import Activation
+from lemons.activation import Activation
 from lemons.tensor import Tensor
 from random import random 
 """
