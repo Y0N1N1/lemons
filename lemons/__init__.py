@@ -1,10 +1,10 @@
-import lemons.nn
-import lemons.loss
-import lemons.error
-import lemons.utils
-import lemons.layer
-import lemons.tensor
-import lemons.metric
-import lemons.optimizer
-import lemons.activation
+from lemons.nn import *
+from lemons.loss import *
+from lemons.error import *
+from lemons.utils import *
+from lemons.layer import *
+from lemons.tensor import *
+from lemons.metric import *
+from lemons.optimizer import *
+from lemons.activation import *
 # lemons is dependencies free! 
