@@ -81,8 +81,62 @@ class NN:
     
     def back(self):
       # Back weight
-      
+      #     create grad tensor
+      grad_tensor = []
+      for layer in self.weight_tensor:
+        l = []
+        for neuron in layer:
+          x = []
+          for last_neuron in neuron:
+            y = []
+            x.append(y)
+          l.append(x)
+        grad_tensor.append(l)
+      #     calculate grad
+      for lindx, layer in enumerate(self.weight_tensor):
+        for nindx, neuron in enumerate(layer):
+          for lnindx, last_neuron in enumerate(neuron):
+          # bias grad samples
+          grad_samples = []
+          for sindx, sample in enumerate(self.layer_results[lindx][nindx][lnindx]):
+            if len(last_neuron) == 0:
+              pass
+            else:
+              weight = last_neuron[0]
+              result = sample
+              result_after_activation = self.layer_results_after_activation[lindx][nindx][lnindx][sindx]
+              single_grad = (self.loss.grad_comp(result_after_activation)) * (self.layer_list[lindx].activation.grad_comp(result)) * (self.layer_list[lindx].grad_comp(weight))
+              grad_samples.append(single_grad)
+          grad = sum(grad_samples) / len(grad_samples)
+          grad_tensor[lindx][nindx][lnindx].append(grad)
+      #     apply optimizer
+      for lindx, layer in enumerate(self.weight_tensor):
+        for nindx, neuron in enumerate(layer):
+          for lnindx, last_neuron in enumerate(neuron):
+            if len(last_neuron) == 0:
+              pass
+            else:
+              self.weight_tensor[lindx][nindx][lnindx][0] = self.weight_tensor[lindx][nindx][lnindx][0] - self.optimizer.comp(grad_tensor[lindx][nindx][lnindx][0])
       # Back bias
+      #     create bias grad tensor
+      bias_grad_tensor = []
+      #     calculate grad
+      for lindx, bias in enumerate(self.bias_tensor):
+        # bias grad samples
+        bias_grad_samples = []
+        for nindx, neuron in enumerate(self.layer_results[bindx]):
+          for lnindx, last_neuron in enumerate(neuron):
+            for sindx, sample in enumerate(last_neuron):
+              bias = self.bias_tensor[lindx]
+              result = sample
+              result_after_activation = self.layer_results_after_activation[lindx][nindx][lnindx][sindx]
+              single_grad = (self.loss.grad_comp(result_after_activation)) * (self.layer_list[lindx].activation.grad_comp(result)) * (self.layer_list[lindx].bias_grad_comp(bias))
+              bias_grad_samples.append(single_grad)
+        grad = sum(bias_grad_samples) / len(bias_grad_samples)
+        bias_grad_tensor.append(grad)
+      #     apply optimizer
+      for indx, grad in enumerate(bias_grad_tensor):
+        self.bias_tensor[indx] = self.bias_tensor[indx] -self.optimizer.comp(grad)
       
       
     
@@ -118,12 +172,12 @@ class NN:
           for last_neuron_index, last_neuron in enumerate(self.layer_results_after_activation[lindx][indx]):
             for chosen_indexes in previous_neuron_index:
               if chosen_indexes == last_neuron_index:
-                last_neuron.append(result)
+                self.layer_results_after_activation[lindx][indx][last_neuron_index].append(result)
           # layer_results append values
           for last_neuron_index, last_neuron in enumerate(self.layer_results[lindx][indx]):
             for chosen_indexes in previous_neuron_index:
               if chosen_indexes == last_neuron_index:
-                last_neuron.append(result_before_activation)
+                self.layer_results[lindx][indx][last_neuron_index].append(result_before_activation)
         # updating vector
         neuron_vals = new_neuron_vals
       return neuron_vals
