@@ -26,17 +26,17 @@ class Tensor:
     
 #______________________________________________________________________
 
-   def get_shape(lst):
+  def get_shape(lst):
     shape = []
     l = lst
     s = True
     while s:
-        shape.append(len(l))
-        if isinstance(l[0], Sequence):
-            s = True
-            l = l[0]
-        else:
-            s = False
+      shape.append(len(l))
+      if isinstance(l[0], Sequence):
+        s = True
+        l = l[0]
+      else:
+        s = False
     return shape
   
   
