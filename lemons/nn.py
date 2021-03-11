@@ -297,8 +297,8 @@ class NN:
         lines = []
         for line in file_in:
           lines.append(line)
-        self.bias_tensor =
-        self.weight_tensor =
+        self.bias_tensor = eval(lines[0])
+        self.weight_tensor = eval(lines[1])
       
       
       
