@@ -96,19 +96,19 @@ class NN:
       for lindx, layer in enumerate(self.weight_tensor):
         for nindx, neuron in enumerate(layer):
           for lnindx, last_neuron in enumerate(neuron):
-          # bias grad samples
-          grad_samples = []
-          for sindx, sample in enumerate(self.layer_results[lindx][nindx][lnindx]):
-            if len(last_neuron) == 0:
-              pass
-            else:
-              weight = last_neuron[0]
-              result = sample
-              result_after_activation = self.layer_results_after_activation[lindx][nindx][lnindx][sindx]
-              single_grad = (self.loss.grad_comp(result_after_activation)) * (self.layer_list[lindx].activation.grad_comp(result)) * (self.layer_list[lindx].grad_comp(weight))
-              grad_samples.append(single_grad)
-          grad = sum(grad_samples) / len(grad_samples)
-          grad_tensor[lindx][nindx][lnindx].append(grad)
+            # bias grad samples
+            grad_samples = []
+            for sindx, sample in enumerate(self.layer_results[lindx][nindx][lnindx]):
+              if len(last_neuron) == 0:
+                pass
+              else:
+                weight = last_neuron[0]
+                result = sample
+                result_after_activation = self.layer_results_after_activation[lindx][nindx][lnindx][sindx]
+                single_grad = (self.loss.grad_comp(result_after_activation)) * (self.layer_list[lindx].activation.grad_comp(result)) * (self.layer_list[lindx].grad_comp(weight))
+                grad_samples.append(single_grad)
+            grad = sum(grad_samples) / len(grad_samples)
+            grad_tensor[lindx][nindx][lnindx].append(grad)
       #     apply optimizer
       for lindx, layer in enumerate(self.weight_tensor):
         for nindx, neuron in enumerate(layer):
