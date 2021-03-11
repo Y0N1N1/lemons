@@ -18,6 +18,7 @@ NN ->
     test
     predict
     save
+    open
 """
 class NN:
   class FNN:
@@ -40,6 +41,8 @@ class NN:
           ll = self.layer_list[i-1].size()
         l = self.layer_list[i+1].layer_weight_tensor(ll)
         self.weight_tensor.append(l)
+      # input length
+      self.input_length = input_length
       # bias tensor
       self.bias_tensor = []
       # make bias tensor
@@ -282,15 +285,20 @@ class NN:
       return self.foward(input_vector)
     
     def save(self, file_name):
-      # file_name must be a txt file in the same directory, lemons will write as follows:
-      #
-      #
-      #
-      #
-      #
-      #
-      
-      
+      # file_name must be a txt file in the same directory, lemons will write as follows
+      #bias tensor 
+      #weight tensor
+      f = open(f"{file_name}.txt", "w")
+      f.write(f"{self.bias_tensor}")
+      f.write(f"{self.weight_tensor}")
+
+    def open(self, file_name):
+      with open(f"{file_name}.txt") as file_in:
+        lines = []
+        for line in file_in:
+          lines.append(line)
+        self.bias_tensor =
+        self.weight_tensor =
       
       
       
