@@ -267,7 +267,6 @@ class Loss:
       return -sum(sum_list)
     
     def grad_comp(self, y_meets_wanted_list, y_predicted_list):
-      self, y_meets_wanted_list, y_predicted_list):
       sum_list = []
       for i in range(self.number_of_classes):
         wan = y_meets_wanted_list[i]
