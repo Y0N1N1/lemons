@@ -176,7 +176,7 @@ class Loss:
       self.il = False
       
     def comp(self, y_wanted, y_predicted):
-      return ((math.log(y_wanted + 1))*(math.log(y_wanted + 1))-(math.log(y_predicted + 1))
+      return ((math.log(y_wanted + 1))*(math.log(y_wanted + 1))-(math.log(y_predicted + 1)))
     
     def grad_comp(self, y_wanted, y_predicted):
       return (−(1/(y_predicted+1) ) )
