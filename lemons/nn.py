@@ -53,8 +53,8 @@ class NN:
       self.layer_results_after_activation = []
       # make ^^^
       for i in range(length - 1):
-        ll = self.layer_list[i].size()
-        lll = self.layer_list[i+1].size()
+        ll = self.layer_list[i].size
+        lll = self.layer_list[i+1].size
         l = []
         for i in range(lll):
           x = []
