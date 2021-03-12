@@ -255,7 +255,10 @@ class NN:
           batch_metric_history.append(sum(sample_metric_history)/len(sample_metric_history))
         # display progress
         if epoch_show:
-            print(f"--- epoch --- loss: {sum(batch_loss_history)/len(batch_loss_history)} metric: {sum(batch_metric_history)/len(batch_metric_history)} progress: {epoch/epochs}%")
+            if len(batch_loss_history) == 0:
+              pass
+            else:
+              print(f"--- epoch --- loss: {sum(batch_loss_history)/len(batch_loss_history)} metric: {sum(batch_metric_history)/len(batch_metric_history)} progress: {epoch/epochs}%")
         epoch_loss_history.append(sum(batch_loss_history)/len(batch_loss_history))
         epoch_metric_history.append(sum(batch_metric_history)/len(batch_metric_history))
       # end
