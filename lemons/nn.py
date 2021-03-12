@@ -39,7 +39,7 @@ class NN:
           first = False
         else:
           ll = self.layer_list[i-1].size
-        l = self.layer_list[i+1].layer_weight_tensor(ll)
+        l = self.layer_list[i].layer_weight_tensor(ll)
         self.weight_tensor.append(l)
       # input length
       self.input_length = input_length
