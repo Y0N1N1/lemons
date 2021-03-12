@@ -22,16 +22,7 @@ class Tensor:
       self.shape = "error"
       msg = Error("data not list")
       msg.raise_error("TypeError")
-    self.shape = []
-    l = data
-    s = True
-    while s:
-      shape.append(len(l))
-      if isinstance(l[0], Sequence):
-        s = True
-        l = l[0]
-      else:
-        s = False
+ 
     
 #______________________________________________________________________
 
