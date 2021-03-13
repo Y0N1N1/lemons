@@ -252,7 +252,7 @@ class NN:
           if len(data_batch) == 0:
             pass
           else:
-            elif batch_show:
+            if batch_show:
               print(f"--- batch --- loss: {sum(sample_loss_history)/len(sample_loss_history)} metric: {sum(sample_metric_history)/len(sample_metric_history)} progress: {bindx/len(train_data)}%")
             batch_loss_history.append(sum(sample_loss_history)/len(sample_loss_history))
             batch_metric_history.append(sum(sample_metric_history)/len(sample_metric_history))
