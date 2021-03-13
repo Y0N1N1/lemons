@@ -257,17 +257,20 @@ class NN:
             batch_loss_history.append(sum(sample_loss_history)/len(sample_loss_history))
             batch_metric_history.append(sum(sample_metric_history)/len(sample_metric_history))
         # display progress
-        if epoch_show:
-            if len(batch_loss_history) == 0:
-              pass
-            else:
-              print(f"--- epoch --- loss: {sum(batch_loss_history)/len(batch_loss_history)} metric: {sum(batch_metric_history)/len(batch_metric_history)} progress: {epoch/epochs}%")
-        epoch_loss_history.append(sum(batch_loss_history)/len(batch_loss_history))
-        epoch_metric_history.append(sum(batch_metric_history)/len(batch_metric_history))
+        if len(batch_loss_history) == 0:
+          pass
+        else:
+          if epoch_show:
+            print(f"--- epoch --- loss: {sum(batch_loss_history)/len(batch_loss_history)} metric: {sum(batch_metric_history)/len(batch_metric_history)} progress: {epoch/epochs}%")
+          epoch_loss_history.append(sum(batch_loss_history)/len(batch_loss_history))
+          epoch_metric_history.append(sum(batch_metric_history)/len(batch_metric_history))
+      if len(batch_loss_history) == 0:
+        pass
+      else:
       # end
-      print(f"final loss: {epoch_loss_history[-1]}, final metric: {epoch_metric_history[-1]}")
+        print(f"final loss: {epoch_loss_history[-1]}, final metric: {epoch_metric_history[-1]}")
       # retuns final loss and final metric
-      return epoch_loss_history[-1], epoch_metric_history[-1]
+        return epoch_loss_history[-1], epoch_metric_history[-1]
 
     def test(self, data_tensor : Tensor, label_tensor : Tensor, show=True):
       # data
