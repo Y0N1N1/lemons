@@ -249,10 +249,13 @@ class NN:
             # perform backprop
             self.back()
           # display progress
-          if batch_show:
+          if len(data_batch) == 0:
+            pass
+          else:
+            elif batch_show:
               print(f"--- batch --- loss: {sum(sample_loss_history)/len(sample_loss_history)} metric: {sum(sample_metric_history)/len(sample_metric_history)} progress: {bindx/len(train_data)}%")
-          batch_loss_history.append(sum(sample_loss_history)/len(sample_loss_history))
-          batch_metric_history.append(sum(sample_metric_history)/len(sample_metric_history))
+            batch_loss_history.append(sum(sample_loss_history)/len(sample_loss_history))
+            batch_metric_history.append(sum(sample_metric_history)/len(sample_metric_history))
         # display progress
         if epoch_show:
             if len(batch_loss_history) == 0:
