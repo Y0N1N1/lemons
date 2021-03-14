@@ -30,7 +30,7 @@ future ideas ->
   LookAhead
   Gradient Centralization
   https://github.com/lessw2020/Ranger-Deep-Learning-Optimizer
-
+  Adabound
 """
 
 class Optimizer:
