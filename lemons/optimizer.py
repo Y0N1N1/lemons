@@ -26,6 +26,11 @@ future ideas ->
   BFGS
   Newton’s Method
   adamw
+  Rectified adam
+  LookAhead
+  Gradient Centralization
+  https://github.com/lessw2020/Ranger-Deep-Learning-Optimizer
+
 """
 
 class Optimizer:
