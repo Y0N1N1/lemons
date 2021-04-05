@@ -7,7 +7,7 @@ with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
 
 setup(name='lemons',
       version='0.1.0',
-      description='dl framework for non-normies of ai, dependencies free',
+      description='Tensors library with proper tensor properties for machine learning, physics and math, dependencies free',
       author='Y0N1N1',
       license='MIT',
       long_description=long_description,
