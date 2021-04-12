@@ -1,16 +1,33 @@
 
 class tensor:
-  def __init__(self, form=(0, 1), shape=(2), data=[1, 1], flatten=False, **kwargs):
+  def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, grad=False, **kwargs):
     self.form = form
     self.shape = shape
     self.data = data
     self.variables = []
     for var in kwargs:
       self.variables.append(var)
-    if flatten == True:
+    if flatten:
+      self.data = tensor.build(form, shape, data)
+    if grad:
+      self.grad = tensor(empty=True)
       
-      
+  def __call__(self, t):    
+    # tensor deconstruct
+  
+  def num(self, *args, **kwargs):
+    ## flatten
+    flattened = tensor.flatten()
+    ## input all args kwargs to functions
+    ## build numerical as tensor
+    ## return it
     
+  def __repr__(self):
+    return f"<Tensor {self.data} of form {self.form} of shape {self.shape}>"
+  
+  def __str__(self):
+    return f"<Tensor {self.data} of form {self.form} of shape {self.shape}>"
+  
   @property 
   def form(self):
     return self.form
@@ -25,16 +42,29 @@ class tensor:
   
   @staticmethod
   def _shape(data):
-    
+    shape = []
+    l = data
+    s = True
+    while s:
+      shape.append(len(l))
+      if isinstance(l[0], Sequence):
+        s = True
+        l = l[0]
+      else:
+        s = False
+    return tuple(shape)
     
   def dot(self, t):
     #tensor dot
     pass
   
-  @staticmethod
-  def build(form=(0, 1), shape=(2), data=[1, 1]):
-    # take flattened and build tensor
-    pass
+  @classmethod
+  def build(form=(0, 1), shape=(2), data=[1, 1], **kwargs):
+    flattened = data
+    data = []
+    #build it as data
+    t = tensor(form=form, shape=shape, data=data, flatten=False, **kwargs)
+    return t
   
   @classmethod
   def flatten(cls, **kwargs):
@@ -42,7 +72,5 @@ class tensor:
     ##create flattened data
     t = tensor(form=(0, 1), shape=(len(flattened)), data=flattened, flatten=False, **kwargs)
     return t
-  
-  def __str__(self):
-    return 
+
 
