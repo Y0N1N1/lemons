@@ -17,18 +17,31 @@ class tensor:
   def __call__(self, t):    
     # tensor deconstruct
   def __add__():
+    # +
   def __sub__():
+    # -
   def __mul__():
+    # *
   def __pow__():
+    # **
   def __truediv__():
+    # /
   def __floordiv__():
+    # //
   def __mod__():
+    # %
   def __lshift__():
+    # <<
   def __rshift__():
+    # >>
   def __and__():
+    # &
   def __or__():
+    # |
   def __xor__():
+    # ^
   def __invert__():
+    # -
   
   def num(self, *args, **kwargs):
     ## flatten
