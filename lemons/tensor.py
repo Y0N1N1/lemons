@@ -12,7 +12,7 @@ class tensor:
     if flatten:
       self.data = tensor.build(form, shape, data)
     if grad:
-      self.grad = tensor(empty=True)
+      self.grad = []
       
   def __call__(self, t):    
     # tensor deconstruct
@@ -85,8 +85,11 @@ class tensor:
         s = False
     return tuple(shape)
     
-  def dot(self, t):
-    #tensor dot
+  def dot(self, t:tensor):
+    F1 = list(self.form)
+    F2 = list(t.form)
+    form = []
+    
     pass
   
   @classmethod
