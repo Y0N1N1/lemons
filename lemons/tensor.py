@@ -2,11 +2,12 @@ from collections.abc import Sequence
 import random from random
 
 class tensor:
-  def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, grad=False, **kwargs):
+  def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
     self.form = form
     self.shape = shape
     self.data = data
     self.variables = []
+    self.rgrad = rgrad
     for var in kwargs:
       self.variables.append(var)
     if flatten:
@@ -85,12 +86,16 @@ class tensor:
         s = False
     return tuple(shape)
     
-  def dot(self, t:tensor):
-    F1 = list(self.form)
-    F2 = list(t.form)
-    form = []
-    
-    pass
+  def dot(self, t:tensor, **kwargs):
+    form = [self.form[0]+t.form[0],self.form[1]+t.form[1]]
+    shape = ###
+    data = ### flatten
+    grad = False
+    if self.rgrad:
+      grad = True
+    if t.rgrad:
+      grad = True
+    return tensor(empty=False, form=form, shape=shape, data=data, flatten=True, rgrad=grad, **kwargs)
   
   @classmethod
   def build(form=(0, 1), shape=(2), data=[1, 1], **kwargs):
