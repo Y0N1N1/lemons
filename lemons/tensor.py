@@ -106,7 +106,7 @@ class tensor:
   
   @staticmethod
   def zeros(t=False, form=(1, 1), shape=(2, 2), **kwargs):
-    if te == False:
+    if t == False:
      data = []
      size = 1
      for i in shape:
@@ -125,7 +125,7 @@ class tensor:
   
   @staticmethod
   def ones(t=False, form=(1, 1), shape=(2, 2), **kwargs):
-    if te == False:
+    if t == False:
      data = []
      size = 1
      for i in shape:
@@ -144,7 +144,7 @@ class tensor:
   
   @staticmethod
   def randn(t=False, form=(1, 1), shape=(2, 2), **kwargs):
-    if te == False:
+    if t == False:
      data = []
      size = 1
      for i in shape:
