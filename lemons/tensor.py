@@ -639,7 +639,6 @@ class tensor:
     form = tensor.formdot(self.form, t.form)
     shape = tensor.shapedot(self.shape, t.shape)
     data = []
-    # take self and multiply my value by the other's values
     flattened1 = self.flatten
     flattened2 = t.flatten
     for i in flattened1.data:
