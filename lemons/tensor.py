@@ -89,7 +89,10 @@ class tensor:
 
         Raises
         ------
-        
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
     """
     
   def __add__(self, t):
@@ -106,6 +109,11 @@ class tensor:
           if the shapes of both tensors don't match
         numnortensor
         if the input is neither a number nor a tensor
+        
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
         
     """
     if t isinstanceof tensor:
@@ -147,6 +155,11 @@ class tensor:
         numnortensor
         if the input is neither a number nor a tensor
         
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
+        
     """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
@@ -186,6 +199,11 @@ class tensor:
           if the shapes of both tensors don't match
         numnortensor
         if the input is neither a number nor a tensor
+        
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
         
     """
     if t isinstanceof tensor:
@@ -227,6 +245,11 @@ class tensor:
         numnortensor
         if the input is neither a number nor a tensor
         
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
+        
     """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
@@ -266,6 +289,11 @@ class tensor:
           if the shapes of both tensors don't match
         numnortensor
         if the input is neither a number nor a tensor
+        
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
         
     """
     if t isinstanceof tensor:
@@ -307,6 +335,11 @@ class tensor:
         numnortensor
         if the input is neither a number nor a tensor
         
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
+        
     """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
@@ -346,6 +379,11 @@ class tensor:
           if the shapes of both tensors don't match
         numnortensor
         if the input is neither a number nor a tensor
+        
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
         
     """
     if t isinstanceof tensor:
@@ -387,6 +425,11 @@ class tensor:
         numnortensor
         if the input is neither a number nor a tensor
         
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
+        
     """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
@@ -425,7 +468,12 @@ class tensor:
         shapeform
           if the shapes of both tensors don't match
         numnortensor
-        if the input is neither a number nor a tensor
+          if the input is neither a number nor a tensor
+        
+        Returns
+        ------
+        list
+          a list of strings used that are the header columns
         
     """
     if t isinstanceof tensor:
