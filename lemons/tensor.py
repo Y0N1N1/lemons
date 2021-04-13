@@ -29,6 +29,7 @@ class tensor:
     -------
     __init__(empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs)
         takes in form, shape and data to build the basis
+    __call__()
   """
   def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
     """takes in form, shape and data to build the basis
@@ -46,7 +47,7 @@ class tensor:
           the computer science representation of a tensor as a multidimensional array
         data : list, optional
           the tensor itself, containing all the data, may be inputed flattened if flatten=True
-        variables : list, optional
+        kwargs : dict, optional
           an array of variables/functions inserted through **kwargs, called through variable()
         rgrad : bool, optional
           if the tensor requires grad and this if history should be saved
@@ -66,7 +67,7 @@ class tensor:
     for var in kwargs:
       self.variables.append(var)
     if flatten:
-      self.data = tensor.build(form, shape, data)
+      self.data = tensor.build(form, shape, data).data
     if grad:
       self.grad = []
     if shape != tensor._shape(self.data):
@@ -84,27 +85,37 @@ class tensor:
           the indexes of the self tensor, arranged as ((),())
         ti : tuple, optional
           the indexes of the tensor being do, arranged as ((),())
-        variables : list, optional
+        kwargs : dict, optional
           an array of variables/functions inserted through **kwargs, called through variable()
-        rgrad : bool, optional
-          if the tensor requires grad and this if history should be saved
 
         Raises
         ------
-        WrongShape
-            If no sound is set for the animal or passed in as a
-            parameter.
+        
     """
+    
   def __add__(self, t):
     # +
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i + tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i + t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -112,12 +123,25 @@ class tensor:
     # -
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i - tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i - t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -125,12 +149,25 @@ class tensor:
     # *
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i * tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i * t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -138,12 +175,25 @@ class tensor:
     # **
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i ** tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i ** t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -151,12 +201,25 @@ class tensor:
     # /
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i / tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i / t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -164,12 +227,25 @@ class tensor:
     # //
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i // tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i // t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -177,12 +253,25 @@ class tensor:
     # %
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i % tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i % t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -190,12 +279,25 @@ class tensor:
     # <<
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i << tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i << t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -203,12 +305,25 @@ class tensor:
     # >>
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i >> tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i >> t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -216,12 +331,25 @@ class tensor:
     # &
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i & tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i & t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -229,12 +357,25 @@ class tensor:
     # |
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i | tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i | t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -242,12 +383,25 @@ class tensor:
     # ^
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
-        #add items
+        data = self.flatten
+        tdata = t.flatten
+        new = []
+        for e, i in enumerate(data.data):
+          x = i ^ tdata.data[e]
+          new.append(x)
+        data = tensor.build(form=self.form, shape=self.shape, data=new)
+        data.variables = self.variables
+        return data
       else:
         raise Exception("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
-        #add t to all
+        data = self.flatten
+        for e,i in enumerate(data.data):
+          data.data[e] = i ^ t 
+        data = tensor.build(form=self.form, shape=self.shape, data=data)
+        data.variables = self.variables
+        return data
       else:
         raise Exception('neither a number nor a tensor')
   
@@ -259,7 +413,7 @@ class tensor:
   
   def num(self, *args, **kwargs):
     ## flatten
-    flattened = tensor.flatten()
+    flattened = self.flatten
     ## input all args kwargs to functions
     ## build numerical as tensor
     ## return it
@@ -318,11 +472,12 @@ class tensor:
     t = tensor(form=form, shape=shape, data=data, flatten=False, **kwargs)
     return t
   
-  @classmethod
-  def flatten(cls, **kwargs):
+  @property
+  def flatten(self):
     flattened = []
     ##create flattened data
-    t = tensor(form=(0, 1), shape=(len(flattened)), data=flattened, flatten=False, **kwargs)
+    t = tensor(form=(0, 1), shape=(len(flattened)), data=flattened, flatten=False)
+    t.variables = self.variables
     return t
   
   @staticmethod
