@@ -575,7 +575,15 @@ class tensor:
   
   @staticmethod
   def core(form=(0, 1), shape=(2), data=1, **kwargs):
-    
+    n = 1
+    for i in shape[:-1]:
+      n *= i
+    other = data
+    data = []
+    for a in range(n):
+      for i in other:
+        data.append(i)
+    return tensor(form=form, shape=shape, data=data, flatten=True, **kwargs)
     
   def sum(self):
     s = 0
