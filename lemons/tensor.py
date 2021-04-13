@@ -104,7 +104,7 @@ class tensor:
         ------
         shapeform
           if the shapes of both tensors don't match
-        intnortensor
+        numnortensor
         if the input is neither a number nor a tensor
         
     """
@@ -130,7 +130,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __sub__(self, t):
     # -
@@ -156,7 +156,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __mul__(self, t):
     # *
@@ -182,7 +182,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __pow__(self, t):
     # **
@@ -208,7 +208,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __truediv__(self, t):
     # /
@@ -234,7 +234,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __floordiv__(self, t):
     # //
@@ -260,7 +260,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __mod__(self, t):
     # %
@@ -286,7 +286,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __lshift__(self, t):
     # <<
@@ -312,7 +312,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __rshift__(self, t):
     # >>
@@ -338,7 +338,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __and__(self, t):
     # &
@@ -364,7 +364,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __or__(self, t):
     # |
@@ -390,7 +390,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __xor__(self, t):
     # ^
@@ -416,7 +416,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise intnortensor('neither a number nor a tensor')
+        raise numnortensor('neither a number nor a tensor')
   
   def __invert__(self):
     x = tensor.flatten()
