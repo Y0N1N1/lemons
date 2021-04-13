@@ -71,7 +71,7 @@ class tensor:
     if grad:
       self.grad = []
     if shape != tensor._shape(self.data):
-      raise WrongShape("tensor with wrong shape")
+      raise Nshape("tensor with wrong shape")
     
       
   def __call__(self, t:tensor, selfi, ti, **kwargs):    
@@ -107,7 +107,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -117,7 +117,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __sub__(self, t):
     # -
@@ -133,7 +133,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -143,7 +143,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __mul__(self, t):
     # *
@@ -159,7 +159,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -169,7 +169,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __pow__(self, t):
     # **
@@ -185,7 +185,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -195,7 +195,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __truediv__(self, t):
     # /
@@ -211,7 +211,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -221,7 +221,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __floordiv__(self, t):
     # //
@@ -237,7 +237,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -247,7 +247,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __mod__(self, t):
     # %
@@ -263,7 +263,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -273,7 +273,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __lshift__(self, t):
     # <<
@@ -289,7 +289,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -299,7 +299,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __rshift__(self, t):
     # >>
@@ -315,7 +315,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -325,7 +325,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __and__(self, t):
     # &
@@ -341,7 +341,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -351,7 +351,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __or__(self, t):
     # |
@@ -367,7 +367,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -377,7 +377,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __xor__(self, t):
     # ^
@@ -393,7 +393,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception("shape/form doesn't match")
+        raise shapeform("shape/form doesn't match")
     else:
       if t isinstanceof numbers.Number:
         data = self.flatten
@@ -403,7 +403,7 @@ class tensor:
         data.variables = self.variables
         return data
       else:
-        raise Exception('neither a number nor a tensor')
+        raise intnortensor('neither a number nor a tensor')
   
   def __invert__(self):
     x = tensor.flatten()
