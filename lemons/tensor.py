@@ -1,9 +1,63 @@
 from collections.abc import Sequence
 import random from random
 import numbers
+from _error import *
 
 class tensor:
+  """
+    A class used to represent a mathematical tensor
+
+    the class provides useful functions for both the mathematical representation of tensors
+    (following the covariant contravariant forms)
+    and a way to treat tensors in the computer science form
+    (following the shape properties)
+
+    Attributes
+    ----------
+    form : tuple, optional
+      the mathematical form of the tensor, always two numbers
+    shape : tuple, optional
+      the computer science representation of a tensor as a multidimensional array
+    data : list, optional
+      the tensor itself, containing all the data, may be inputed flattened if flatten=True
+    variables : list, optional
+      an array of variables/functions inserted through **kwargs, called through variable()
+    rgrad : bool, optional
+      if the tensor requires grad and this if history should be saved
+      
+    Methods
+    -------
+    __init__(empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs)
+        takes in form, shape and data to build the basis
+  """
   def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
+    """takes in form, shape and data to build the basis
+
+        if empty isn't set to true, the tensor will not be empty, if form, shape and data are not provided
+        the tensor will be a (1, 1) vector. If flatten is true, the tensor will be passed as flattened and
+        will be constructed artificially, if rgrad is set to true, a history for the grad will be recorded
+        kwargs are other variables/functions stored in a list called variables.
+
+        Parameters
+        ----------
+        form : tuple, optional
+          the mathematical form of the tensor, always two numbers
+        shape : tuple, optional
+          the computer science representation of a tensor as a multidimensional array
+        data : list, optional
+          the tensor itself, containing all the data, may be inputed flattened if flatten=True
+        variables : list, optional
+          an array of variables/functions inserted through **kwargs, called through variable()
+        rgrad : bool, optional
+          if the tensor requires grad and this if history should be saved
+
+        Raises
+        ------
+        WrongShape
+            If no sound is set for the animal or passed in as a
+            parameter.
+    """
+    
     self.form = form
     self.shape = shape
     self.data = data
@@ -15,10 +69,34 @@ class tensor:
       self.data = tensor.build(form, shape, data)
     if grad:
       self.grad = []
+    if shape != tensor._shape(self.data):
+      raise WrongShape("tensor with wrong shape")
+    
       
-  def __call__(self, t):    
-    # tensor deconstruct
+  def __call__(self, t:tensor, selfi, ti, **kwargs):    
+    """takes in another tensor and indexes to create a new tensor
+
+        Parameters
+        ----------
+        t : tensor, optional
+          the tensor being dotted to 
+        selfi : tuple, optional
+          the indexes of the self tensor, arranged as ((),())
+        ti : tuple, optional
+          the indexes of the tensor being do, arranged as ((),())
+        variables : list, optional
+          an array of variables/functions inserted through **kwargs, called through variable()
+        rgrad : bool, optional
+          if the tensor requires grad and this if history should be saved
+
+        Raises
+        ------
+        WrongShape
+            If no sound is set for the animal or passed in as a
+            parameter.
+    """
   def __add__(self, t):
+    # +
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         #add items
@@ -29,28 +107,150 @@ class tensor:
         #add t to all
       else:
         raise Exception('neither a number nor a tensor')
+  
   def __sub__(self, t):
     # -
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __mul__(self, t):
     # *
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __pow__(self, t):
     # **
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __truediv__(self, t):
     # /
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __floordiv__(self, t):
     # //
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __mod__(self, t):
     # %
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __lshift__(self, t):
     # <<
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __rshift__(self, t):
     # >>
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __and__(self, t):
     # &
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __or__(self, t):
     # |
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __xor__(self, t):
     # ^
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  
   def __invert__(self):
     x = tensor.flatten()
     for e,i in enumerate(x.data):
