@@ -4,9 +4,9 @@ class notshape(Exception):
   """
   pass
 
-class intnortensor(Exception):
+class numnortensor(Exception):
   """
-    Raised when the input is neither an int nor a tensor
+    Raised when the input is neither a num nor a tensor
   """
   pass
 
