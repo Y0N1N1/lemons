@@ -1,6 +1,17 @@
-class WrongShape(Exception):
+class shape(Exception):
   """
     Raised when the shape passed into tensor does not match with the data given
   """
   pass
 
+class intnortensor(Exception):
+  """
+    Raised when the input is neither an int nor a tensor
+  """
+  pass
+
+class shapeform(Exception):
+  """
+    Raised when the shape or form are not matching with that of another tensor
+  """
+  pass
