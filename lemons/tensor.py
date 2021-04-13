@@ -71,7 +71,7 @@ class tensor:
     if grad:
       self.grad = []
     if shape != tensor._shape(self.data):
-      raise Nshape("tensor with wrong shape")
+      raise notshape("tensor with wrong shape")
     
       
   def __call__(self, t:tensor, selfi, ti, **kwargs):    
