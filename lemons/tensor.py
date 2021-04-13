@@ -482,7 +482,16 @@ class tensor:
   def dot(self, t:tensor, **kwargs):
     form = tensor.formdot(self.form, t.form)
     shape = tensor.shapedot(self.shape, t.shape)
-    data = ### flatten
+    data = []
+    # take self and multiply my value by the other's values
+    flattened1 = self.flatten
+    flattened2 = t.flatten
+    for i in flattened1.data:
+      x = []
+      for a in flattened2.data:
+        x.append(a*i)
+      for a in x:
+        data.append(a)
     grad = False
     if self.rgrad:
       grad = True
