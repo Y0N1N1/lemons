@@ -1,7 +1,7 @@
 from collections.abc import Sequence
 import random from random
 import numbers
-from _error import *
+from lemons._error import *
 
 class tensor:
   """
