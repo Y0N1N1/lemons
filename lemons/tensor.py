@@ -1,5 +1,6 @@
 from collections.abc import Sequence
 import random from random
+import numbers
 
 class tensor:
   def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
@@ -17,32 +18,44 @@ class tensor:
       
   def __call__(self, t):    
     # tensor deconstruct
-  def __add__():
-    # +
-  def __sub__():
+  def __add__(self, t):
+    if t isinstanceof tensor:
+      if t.shape == self.shape and t.form == self.form:
+        #add items
+      else:
+        raise Exception("shape/form doesn't match")
+    else:
+      if t isinstanceof numbers.Number:
+        #add t to all
+      else:
+        raise Exception('neither a number nor a tensor')
+  def __sub__(self, t):
     # -
-  def __mul__():
+  def __mul__(self, t):
     # *
-  def __pow__():
+  def __pow__(self, t):
     # **
-  def __truediv__():
+  def __truediv__(self, t):
     # /
-  def __floordiv__():
+  def __floordiv__(self, t):
     # //
-  def __mod__():
+  def __mod__(self, t):
     # %
-  def __lshift__():
+  def __lshift__(self, t):
     # <<
-  def __rshift__():
+  def __rshift__(self, t):
     # >>
-  def __and__():
+  def __and__(self, t):
     # &
-  def __or__():
+  def __or__(self, t):
     # |
-  def __xor__():
+  def __xor__(self, t):
     # ^
-  def __invert__():
-    # -
+  def __invert__(self):
+    x = tensor.flatten()
+    for e,i in enumerate(x.data):
+      x[e] = -i
+    return tensor.build(self.form, self.shape, self.data)
   
   def num(self, *args, **kwargs):
     ## flatten
@@ -97,7 +110,7 @@ class tensor:
       grad = True
     return tensor(empty=False, form=form, shape=shape, data=data, flatten=True, rgrad=grad, **kwargs)
   
-  @classmethod
+  @staticmethod
   def build(form=(0, 1), shape=(2), data=[1, 1], **kwargs):
     flattened = data
     data = []
