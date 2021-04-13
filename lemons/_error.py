@@ -1,4 +1,4 @@
-class Nshape(Exception):
+class notshape(Exception):
   """
     Raised when the shape passed into tensor does not match with the data given
   """
