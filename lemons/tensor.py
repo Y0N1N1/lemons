@@ -54,9 +54,8 @@ class tensor:
 
         Raises
         ------
-        WrongShape
-            If no sound is set for the animal or passed in as a
-            parameter.
+        notshape
+            if the shape doesn't match with the tensor's data
     """
     
     self.form = form
@@ -94,7 +93,21 @@ class tensor:
     """
     
   def __add__(self, t):
-    # +
+    """+ tensors or + the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being + to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        intnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
