@@ -549,3 +549,26 @@ class tensor:
         x.append(0)
       data.append(x)
     return tensor(form=(1, 1), shape=(d, d), data=data, flatten=False, **kwargs)
+
+  @staticmethod
+  def const(form=(0, 1), shape=(2), const=1, **kwargs):
+    n = 1
+    for i in shape:
+      n *= i
+    data = []
+    for i in range(n):
+      data.append(const)
+    return tensor(form=form, shape=shape, data=data, flatten=True, **kwargs)
+  
+  @staticmethod
+  def core(form=(0, 1), shape=(2), data=1, **kwargs):
+    
+    
+  def sum(self):
+    s = 0
+    x = self.flatten
+    for i in x.data:
+      s += i
+    return s
+  
+  
