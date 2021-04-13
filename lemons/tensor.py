@@ -465,10 +465,23 @@ class tensor:
       else:
         s = False
     return tuple(shape)
-    
+  
+  @staticmethod
+  def formdot(form1=(0, 1), form2=(1, 0)):
+    return (form1[0]+form2[0], form1[1]+form2[1])
+  
+  @staticmethod
+  def shapedot(shape1=(2), shape2=(2)):
+    new = []
+    for i in shape1:
+      new.append(i)
+    for i in shape2:
+      new.append(i)
+    return tuple(new)
+  
   def dot(self, t:tensor, **kwargs):
-    form = [self.form[0]+t.form[0],self.form[1]+t.form[1]]
-    shape = ###
+    form = tensor.formdot(self.form, t.form)
+    shape = tensor.shapedot(self.shape, t.shape)
     data = ### flatten
     grad = False
     if self.rgrad:
