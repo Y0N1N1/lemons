@@ -133,7 +133,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __sub__(self, t):
-    # -
+    """- tensors or - the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being - to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -159,7 +173,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __mul__(self, t):
-    # *
+    """* tensors or * the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being * to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -185,7 +213,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __pow__(self, t):
-    # **
+    """** tensors or ** the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being ** to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -211,7 +253,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __truediv__(self, t):
-    # /
+    """/ tensors or / the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being / to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -237,7 +293,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __floordiv__(self, t):
-    # //
+    """// tensors or // the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being // to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -263,7 +333,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __mod__(self, t):
-    # %
+    """% tensors or % the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being % to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -289,7 +373,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __lshift__(self, t):
-    # <<
+    """<< tensors or << the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being << to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -315,7 +413,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __rshift__(self, t):
-    # >>
+    """>> tensors or >> the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being >> to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -341,7 +453,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __and__(self, t):
-    # &
+    """& tensors or & the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being & to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -367,7 +493,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __or__(self, t):
-    # |
+    """| tensors or | the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being | to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -393,7 +533,21 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __xor__(self, t):
-    # ^
+    """^ tensors or ^ the self tensor with number
+
+        Parameters
+        ----------
+        t : number/tensor, optional
+          the tensor/number being ^ to 
+
+        Raises
+        ------
+        shapeform
+          if the shapes of both tensors don't match
+        numnortensor
+        if the input is neither a number nor a tensor
+        
+    """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
         data = self.flatten
@@ -419,6 +573,8 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __invert__(self):
+    """inverts self tensor negative     
+    """
     x = tensor.flatten()
     for e,i in enumerate(x.data):
       x[e] = -i
