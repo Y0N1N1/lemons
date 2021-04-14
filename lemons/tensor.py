@@ -837,6 +837,8 @@ class tensor:
   
   @staticmethod
   def ones(t=False, form=(1, 1), shape=(2, 2), **kwargs):
+    """returns the 1 tensor of the inputted form and shape
+    """
     if t == False:
      data = []
      size = 1
@@ -856,6 +858,8 @@ class tensor:
   
   @staticmethod
   def randn(t=False, form=(1, 1), shape=(2, 2), **kwargs):
+    """returns the random(0,1) tensor of the inputted form and shape
+    """
     if t == False:
      data = []
      size = 1
@@ -875,6 +879,8 @@ class tensor:
     
   @staticmethod
   def eye(d, **kwargs):  
+    """returns the identity matrix of the inputted size
+    """
     data = []
     for i in range(d):
       x = []
@@ -888,6 +894,8 @@ class tensor:
 
   @staticmethod
   def const(form=(0, 1), shape=(2), const=1, **kwargs):
+    """returns the tensor full of the const of the inputted form and shape
+    """
     n = 1
     for i in shape:
       n *= i
@@ -898,6 +906,8 @@ class tensor:
   
   @staticmethod
   def core(form=(0, 1), shape=(2), data=1, **kwargs):
+    """returns the tensor with the same numbers for the base of the inputted form and shape
+    """
     n = 1
     for i in shape[:-1]:
       n *= i
@@ -909,6 +919,8 @@ class tensor:
     return tensor(form=form, shape=shape, data=data, flatten=True, **kwargs)
     
   def sum(self):
+    """returns the sum of the tensor's items
+    """
     s = 0
     x = self.flatten
     for i in x.data:
