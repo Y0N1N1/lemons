@@ -30,6 +30,91 @@ class tensor:
     __init__(empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs)
         takes in form, shape and data to build the basis
     __call__()
+        
+    __add__()
+        
+    __sub__()
+        
+    __mul__()
+        
+    __pow__()
+        
+    __truediv__()
+        
+    __floordiv__()
+        
+    __mod__()
+        
+    __lshift__()
+        
+    __rshift__()
+        
+    __and__()
+        
+    __or__()
+        
+    __xor__()
+        
+    __invert__()
+        
+    __repr__()
+        
+    __str__()
+        
+    num()
+        
+    assign() 
+        
+    rank() 
+        
+    form()
+        
+    shape()
+        
+    data()
+        
+    variables() 
+        
+    formtranspose() 
+        
+    shapelen()
+        
+    shapetranspose() 
+        
+    transpose()
+        
+    formdot()
+        
+    shapedot()
+        
+    dot()
+        
+    build() 
+        
+    flatten() 
+        
+    zeros()
+        
+    ones()
+        
+    randn()
+        
+    eye()
+        
+    const()
+        
+    core()
+        
+    sum()
+        
+    pretty()
+        
+    _shape()
+        
+    _shapelen() 
+        
+    _rank()
+        
   """
   def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
     """takes in form, shape and data to build the basis
@@ -648,6 +733,13 @@ class tensor:
     return tensor.build(self.form, self.shape, self.data)
   
   def num(self, *args, **kwargs):
+    """returns the numeric version of the tensor, if the tensor is made up of functions
+        
+        Returns
+        ------
+        tensor
+          returns the numeric version of the tensor, if the tensor is made up of functions
+    """
     ## flatten
     flattened = self.flatten
     ## input all args kwargs to functions
@@ -655,6 +747,13 @@ class tensor:
     ## return it
     
   def assign(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
+    """assigns a whole new tensor to the tensor
+        
+        Returns
+        ------
+        tensor
+          zxxigns a whole new tensor to the tensor
+    """
     self.form = form
     self.shape = shape
     self.data = data
@@ -669,9 +768,23 @@ class tensor:
       raise notshape("tensor with wrong shape")
     
   def __repr__(self):
+    """returns the printable version of the tensor
+        
+        Returns
+        ------
+        tensor
+          returns the printable version of the tensor
+    """
     return f"<Tensor {self.data} of form {self.form} of shape {self.shape}>"
   
   def __str__(self):
+    """returns the printable version of the tensor
+        
+        Returns
+        ------
+        tensor
+          returns the printable version of the tensor
+    """
     return f"<Tensor {self.data} of form {self.form} of shape {self.shape}>"
   
   @staticmethod
@@ -753,6 +866,13 @@ class tensor:
   
   @staticmethd
   def _shapelen(shape):
+    """returns the multiplication of all items in the shape, this gives the total number of numbers in the tensor
+        
+        Returns
+        ------
+        tensor
+          returns the multiplication of all items in the shape, this gives the total number of numbers in the tensor
+    """
     x = 1
     for i in shape:
       x *= i
@@ -785,6 +905,13 @@ class tensor:
     return tuple(new.reverse())
   
   def reshape(self, newshape, newform):
+    """returns the self tensor but with a new shape
+        
+        Returns
+        ------
+        tensor
+          returns the self tensor but with a new shape
+    """
     old = tensor.shapelen()
     new = tensor._shapelen(newshape)
     if old == new:
@@ -862,6 +989,13 @@ class tensor:
     return tuple(new)
   
   def dot(self, t:tensor, **kwargs):
+    """returns the dot product of the self tensor with the t tensor
+        
+        Returns
+        ------
+        tensor
+          returns the tensor of the dot
+    """
     form = tensor.formdot(self.form, t.form)
     shape = tensor.shapedot(self.shape, t.shape)
     data = []
@@ -882,6 +1016,13 @@ class tensor:
   
   @staticmethod
   def build(form=(0, 1), shape=(2), data=[1, 1], **kwargs):
+    """returns the built verson of the tensor inputted
+        
+        Returns
+        ------
+        tensor
+          returns the built verson of the tensor inputted
+    """
     flattened = data
     data = []
     #build it as data
