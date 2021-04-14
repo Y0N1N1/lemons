@@ -274,7 +274,7 @@ class tensor:
         return data
       else:
         raise numnortensor('neither a number nor a tensor')
-  
+ 
   def __truediv__(self, t):
     """/ tensors or / the self tensor with number
 
@@ -927,4 +927,9 @@ class tensor:
       s += i
     return s
   
+  
+  def pretty(self):
+    """prints the tensor in a pretty way
+    """
+    
   
