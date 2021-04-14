@@ -681,43 +681,73 @@ class tensor:
         Returns
         ------
         number
-          returns the rank of the inputted shape#########################################
+          returns the rank of the inputted shape
     """
     return len(shape)
   
   @property
   def rank(self):
     """returns the rank of the tensor
+        
+        Returns
+        ------
+        number
+          returns the rank of the tensor
     """
     return len(self.shape)
   
   @property 
   def form(self):
     """returns the form of the tensor
+        
+        Returns
+        ------
+        tuple
+          returns the form of the tensor
     """
     return self.form
   
   @property
   def shape(self):
     """returns the shape of the tensor
+        
+        Returns
+        ------
+        tuple
+          returns the shape of the tensor
     """
     return self.shape
   
   @property
   def data(self):
     """returns the data of the tensor
+        
+        Returns
+        ------
+        list
+          returns the data of the tensor
     """
     return self.data
   
   @property
   def variables(self):
     """returns the variables of the tensor
+        
+        Returns
+        ------
+        list
+          returns the variables of the tensor
     """
     return self.variables
  
   @staticmethod
   def formtranspose(form):
     """returns the transpose of the inputted form
+        
+        Returns
+        ------
+        tuple
+          returns the transpose of the inputted form
     """
     return (form[1], form[0])
   
@@ -731,6 +761,11 @@ class tensor:
   @property
   def shapelen(self):
     """returns the shapelen of the tensor (length of flattened tensor)
+        
+        Returns
+        ------
+        number
+          returns the shapelen of the tensor
     """
     x = 1
     for i in self.shape:
@@ -740,6 +775,11 @@ class tensor:
   @staticmethod
   def shapetranspose(shape):
     """returns the transpose of the inputted shape
+        
+        Returns
+        ------
+        tuple
+          returns the transpose of the inputted shape
     """
     new = list(self.shape)
     return tuple(new.reverse())
@@ -760,6 +800,11 @@ class tensor:
   @property
   def transpose(self):
     """returns the transpose of the tensor
+        
+        Returns
+        ------
+        tensor
+          returns the transpose of the tensor
     """
     fl = self.flatten
     form = tensor.formtranspose(self.form)
@@ -771,6 +816,11 @@ class tensor:
   @staticmethod
   def _shape(data):
     """returns the shape of the inputted data
+        
+        Returns
+        ------
+        tuple
+          returns the shape of the inputted data
     """
     shape = []
     l = data
@@ -787,12 +837,22 @@ class tensor:
   @staticmethod
   def formdot(form1=(0, 1), form2=(1, 0)):
     """returns the tensor dot product of the inputted forms
+        
+        Returns
+        ------
+        tuple
+          returns the tensor dot product of the inputted forms
     """
     return (form1[0]+form2[0], form1[1]+form2[1])
   
   @staticmethod
   def shapedot(shape1=(2), shape2=(2)):
     """returns the tensor dot product of the inputted shapes
+        
+        Returns
+        ------
+        tuple
+          returns the tensor dot product of the inputted shapes
     """
     new = []
     for i in shape1:
@@ -831,6 +891,11 @@ class tensor:
   @property
   def flatten(self):
     """returns the flattened version of the tensor
+        
+        Returns
+        ------
+        tensor
+          returns the flattened version of the tensor
     """
     flattened = []
     ##create flattened data
@@ -841,6 +906,11 @@ class tensor:
   @staticmethod
   def zeros(t=False, form=(1, 1), shape=(2, 2), **kwargs):
     """returns the zero tensor of the inputted form and shape
+        
+        Returns
+        ------
+        tensor
+          returns the zero tenosr of the inputted form and shape
     """
     if t == False:
      data = []
@@ -862,6 +932,11 @@ class tensor:
   @staticmethod
   def ones(t=False, form=(1, 1), shape=(2, 2), **kwargs):
     """returns the 1 tensor of the inputted form and shape
+        
+        Returns
+        ------
+        tensor
+          returns the 1 tensor of the inputted form and shape
     """
     if t == False:
      data = []
@@ -883,6 +958,11 @@ class tensor:
   @staticmethod
   def randn(t=False, form=(1, 1), shape=(2, 2), **kwargs):
     """returns the random(0,1) tensor of the inputted form and shape
+        
+        Returns
+        ------
+        tensor
+          returns the random(0,1) tensor of the inputted form and shape
     """
     if t == False:
      data = []
@@ -904,6 +984,11 @@ class tensor:
   @staticmethod
   def eye(d, **kwargs):  
     """returns the identity matrix of the inputted size
+        
+        Returns
+        ------
+        matrix
+          returns the identity matrix of the inputted size
     """
     data = []
     for i in range(d):
@@ -919,6 +1004,11 @@ class tensor:
   @staticmethod
   def const(form=(0, 1), shape=(2), const=1, **kwargs):
     """returns the tensor full of the const of the inputted form and shape
+        
+        Returns
+        ------
+        tensor
+          returns the tensor full of the const of the inputted form and shape
     """
     n = 1
     for i in shape:
@@ -931,6 +1021,11 @@ class tensor:
   @staticmethod
   def core(form=(0, 1), shape=(2), data=1, **kwargs):
     """returns the tensor with the same numbers for the base of the inputted form and shape
+        
+        Returns
+        ------
+        tensor
+          returns the tensor with the same numbers for the base of the inputted form and shape
     """
     n = 1
     for i in shape[:-1]:
@@ -944,6 +1039,11 @@ class tensor:
     
   def sum(self):
     """returns the sum of the tensor's items
+        
+        Returns
+        ------
+        number
+          returns the sum of the tensor's items
     """
     s = 0
     x = self.flatten
