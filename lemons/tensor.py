@@ -656,6 +656,35 @@ class tensor:
   def data(self):
     return self.data
   
+  @property
+  def variables(self):
+    return self.variables
+ 
+  @staticmethod
+  def formtranspose(form):
+    return (form[1], form[0])
+  
+  @property
+  def shapelen(self):
+    x = 1
+    for i in self.shape:
+      x *= i
+    return x
+  
+  @staticmethod
+  def shapetranspose(shape):
+    new = list(self.shape)
+    return tuple(new.reverse())
+  
+  @property
+  def transpose(self):
+    fl = self.flatten
+    form = tensor.formtranspose(self.form)
+    shape = tensor.shapetranspose(self.shape)
+    x = tensor.build(form=form, shape=shape, data=fl)
+    x.variables = self.variables
+    return x
+  
   @staticmethod
   def _shape(data):
     shape = []
