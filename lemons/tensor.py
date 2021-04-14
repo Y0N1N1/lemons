@@ -67,7 +67,7 @@ class tensor:
       self.variables.append(var)
     if flatten:
       self.data = tensor.build(form, shape, data).data
-    if grad:
+    if rgrad:
       self.grad = []
     if shape != tensor._shape(self.data):
       raise notshape("tensor with wrong shape")
@@ -635,14 +635,33 @@ class tensor:
     ## build numerical as tensor
     ## return it
     
-  def assign(self, d):
-    self.data = d.data
+  def assign(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
+    self.form = form
+    self.shape = shape
+    self.data = data
+    self.rgrad = rgrad
+    for var in kwargs:
+      self.variables.append(var)
+    if flatten:
+      self.data = tensor.build(form, shape, data).data
+    if rgrad:
+      self.grad = []
+    if shape != tensor._shape(self.data):
+      raise notshape("tensor with wrong shape")
     
   def __repr__(self):
     return f"<Tensor {self.data} of form {self.form} of shape {self.shape}>"
   
   def __str__(self):
     return f"<Tensor {self.data} of form {self.form} of shape {self.shape}>"
+  
+  @staticmethod
+  def _rank(shape):
+    return len(shape)
+  
+  @property
+  def rank(self):
+    return len(self.shape)
   
   @property 
   def form(self):
@@ -664,6 +683,13 @@ class tensor:
   def formtranspose(form):
     return (form[1], form[0])
   
+  @staticmethd
+  def _shapelen(shape):
+    x = 1
+    for i in shape:
+      x *= i
+    return x
+  
   @property
   def shapelen(self):
     x = 1
@@ -675,6 +701,19 @@ class tensor:
   def shapetranspose(shape):
     new = list(self.shape)
     return tuple(new.reverse())
+  
+  def reshape(self, newshape, newform):
+    old = tensor.shapelen()
+    new = tensor._shapelen(newshape)
+    if old == new:
+      if newform[1]+newform[0] == tensor._rank(newshape):
+        e = self.flatten
+        self.assign(empty=False, form=newform, shape=newshape, data=e, flatten=True)
+      else:
+        raise Exception("shape and form doesn't match")
+    else:
+      raise Exception("shapes don't match")
+    
   
   @property
   def transpose(self):
