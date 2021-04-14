@@ -1023,9 +1023,21 @@ class tensor:
         tensor
           returns the built verson of the tensor inputted
     """
-    flattened = data
-    data = []
-    #build it as data
+    new = data
+    news = list(shape)
+    ls = 1
+    for i in news:
+      newss = []
+      for a in news[:-1]:
+        ls *= a
+      for a in range(ls):
+        x = new[:news[-1]]
+        newss.append(x)
+        for e in range(len(new[:news[-1]])):
+          new.pop(0)
+      new = newss
+      news.pop()
+      ls = 1
     t = tensor(form=form, shape=shape, data=data, flatten=False, **kwargs)
     return t
   
@@ -1038,8 +1050,15 @@ class tensor:
         tensor
           returns the flattened version of the tensor
     """
-    flattened = []
-    ##create flattened data
+    flattened = self.data
+    s = True
+    while
+      flattenedd = []
+      for k in flattened:
+        if isinstance(k, Sequence):
+          for j in flattened:
+        else: ####################################
+          
     t = tensor(form=(0, 1), shape=(len(flattened)), data=flattened, flatten=False)
     t.variables = self.variables
     return t
@@ -1196,5 +1215,6 @@ class tensor:
   def pretty(self):
     """prints the tensor in a pretty way
     """
+    
     
   
