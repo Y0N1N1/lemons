@@ -661,22 +661,32 @@ class tensor:
   
   @property
   def rank(self):
+    """returns the rank of the tensor
+    """
     return len(self.shape)
   
   @property 
   def form(self):
+    """returns the form of the tensor
+    """
     return self.form
   
   @property
   def shape(self):
+    """returns the shape of the tensor
+    """
     return self.shape
   
   @property
   def data(self):
+    """returns the data of the tensor
+    """
     return self.data
   
   @property
   def variables(self):
+    """returns the variables of the tensor
+    """
     return self.variables
  
   @staticmethod
@@ -692,6 +702,8 @@ class tensor:
   
   @property
   def shapelen(self):
+    """returns the shapelen of the tensor (length of flattened tensor)
+    """
     x = 1
     for i in self.shape:
       x *= i
@@ -717,6 +729,8 @@ class tensor:
   
   @property
   def transpose(self):
+    """returns the transpose of the tensor
+    """
     fl = self.flatten
     form = tensor.formtranspose(self.form)
     shape = tensor.shapetranspose(self.shape)
@@ -780,6 +794,8 @@ class tensor:
   
   @property
   def flatten(self):
+    """returns the flattened version of the tensor
+    """
     flattened = []
     ##create flattened data
     t = tensor(form=(0, 1), shape=(len(flattened)), data=flattened, flatten=False)
