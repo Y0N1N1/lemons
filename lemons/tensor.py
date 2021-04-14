@@ -657,6 +657,8 @@ class tensor:
   
   @staticmethod
   def _rank(shape):
+    """returns the rank of the inputted shape
+    """
     return len(shape)
   
   @property
@@ -691,6 +693,8 @@ class tensor:
  
   @staticmethod
   def formtranspose(form):
+    """returns the transpose of the inputted form
+    """
     return (form[1], form[0])
   
   @staticmethd
@@ -711,6 +715,8 @@ class tensor:
   
   @staticmethod
   def shapetranspose(shape):
+    """returns the transpose of the inputted shape
+    """
     new = list(self.shape)
     return tuple(new.reverse())
   
@@ -740,6 +746,8 @@ class tensor:
   
   @staticmethod
   def _shape(data):
+    """returns the shape of the inputted data
+    """
     shape = []
     l = data
     s = True
@@ -754,10 +762,14 @@ class tensor:
   
   @staticmethod
   def formdot(form1=(0, 1), form2=(1, 0)):
+    """returns the tensor dot product of the inputted forms
+    """
     return (form1[0]+form2[0], form1[1]+form2[1])
   
   @staticmethod
   def shapedot(shape1=(2), shape2=(2)):
+    """returns the tensor dot product of the inputted shapes
+    """
     new = []
     for i in shape1:
       new.append(i)
@@ -804,6 +816,8 @@ class tensor:
   
   @staticmethod
   def zeros(t=False, form=(1, 1), shape=(2, 2), **kwargs):
+    ######################"""returns the --- of the inputted ---
+    """
     if t == False:
      data = []
      size = 1
