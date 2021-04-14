@@ -728,9 +728,9 @@ class tensor:
         e = self.flatten
         self.assign(empty=False, form=newform, shape=newshape, data=e, flatten=True)
       else:
-        raise Exception("shape and form doesn't match")
+        raise shapeform("shape and form doesn't match")
     else:
-      raise Exception("shapes don't match")
+      raise notshape("shapes don't match")
     
   
   @property
