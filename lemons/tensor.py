@@ -91,8 +91,8 @@ class tensor:
         ------
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting equation
     """
     
   def __add__(self, t):
@@ -112,8 +112,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -157,8 +157,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -202,9 +202,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
-        
+        tensor
+          a tensor of the resulting opperation
     """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
@@ -247,8 +246,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -292,8 +291,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -337,8 +336,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -382,8 +381,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -427,8 +426,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -472,8 +471,8 @@ class tensor:
         
         Returns
         ------
-        list
-          a list of strings used that are the header columns
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -515,6 +514,11 @@ class tensor:
         numnortensor
         if the input is neither a number nor a tensor
         
+        Returns
+        ------
+        tensor
+          a tensor of the resulting opperation
+        
     """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
@@ -554,6 +558,11 @@ class tensor:
           if the shapes of both tensors don't match
         numnortensor
         if the input is neither a number nor a tensor
+        
+        Returns
+        ------
+        tensor
+          a tensor of the resulting opperation
         
     """
     if t isinstanceof tensor:
@@ -595,6 +604,11 @@ class tensor:
         numnortensor
         if the input is neither a number nor a tensor
         
+        Returns
+        ------
+        tensor
+          a tensor of the resulting opperation
+        
     """
     if t isinstanceof tensor:
       if t.shape == self.shape and t.form == self.form:
@@ -621,7 +635,12 @@ class tensor:
         raise numnortensor('neither a number nor a tensor')
   
   def __invert__(self):
-    """inverts self tensor negative     
+    """inverts self tensor negative    
+        
+        Returns
+        ------
+        tensor
+          a tensor of the resulting opperation 
     """
     x = tensor.flatten()
     for e,i in enumerate(x.data):
@@ -658,6 +677,11 @@ class tensor:
   @staticmethod
   def _rank(shape):
     """returns the rank of the inputted shape
+        
+        Returns
+        ------
+        number
+          returns the rank of the inputted shape#########################################
     """
     return len(shape)
   
