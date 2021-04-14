@@ -816,7 +816,7 @@ class tensor:
   
   @staticmethod
   def zeros(t=False, form=(1, 1), shape=(2, 2), **kwargs):
-    ######################"""returns the --- of the inputted ---
+    """returns the zero tensor of the inputted form and shape
     """
     if t == False:
      data = []
