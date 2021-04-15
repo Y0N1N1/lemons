@@ -27,34 +27,34 @@ class tensor:
       
     Methods
     -------
-    __init__(empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs)
+    __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs)
         takes in form, shape and data to build the basis
-    __call__()
-        
-    __add__()
-        
-    __sub__()
-        
-    __mul__()
-        
-    __pow__()
-        
-    __truediv__()
-        
-    __floordiv__()
-        
-    __mod__()
-        
-    __lshift__()
-        
-    __rshift__()
-        
-    __and__()
-        
-    __or__()
-        
-    __xor__()
-        
+    __call__(self, t:tensor, selfi, ti, **kwargs)
+        takes in another tensor and indexes to create a new tensor
+    __add__(self, t)
+        + tensors or + the self tensor with number
+    __sub__(self, t)
+        - tensors or - the self tensor with number
+    __mul__(self, t)
+        * tensors or * the self tensor with number
+    __pow__(self, t)
+        ** tensors or ** the self tensor with number
+    __truediv__(self, t)
+        / tensors or / the self tensor with number
+    __floordiv__(self, t)
+        // tensors or // the self tensor with number
+    __mod__(self, t)
+        % tensors or % the self tensor with number
+    __lshift__(self, t)
+        << tensors or << the self tensor with number
+    __rshift__(self, t)
+        >> tensors or >> the self tensor with number
+    __and__(self, t)
+        & tensors or & the self tensor with number
+    __or__(self, t)
+        | tensors or | the self tensor with number
+    __xor__(self, t)
+        ^ tensors or ^ the self tensor with number
     __invert__()
         
     __repr__()
