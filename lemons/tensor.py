@@ -55,12 +55,12 @@ class tensor:
         | tensors or | the self tensor with number
     __xor__(self, t)
         ^ tensors or ^ the self tensor with number
-    __invert__()
-        
-    __repr__()
-        
-    __str__()
-        
+    __invert__(self)
+        inverts self tensor negative   
+    __repr__(self)
+        returns the printable version of the tensor
+    __str__(self)
+        returns the printable version of the tensor
     num()
         
     assign() 
