@@ -1052,12 +1052,18 @@ class tensor:
     """
     flattened = self.data
     s = True
-    while
-      flattenedd = []
-      for k in flattened:
-        if isinstance(k, Sequence):
-          for j in flattened:
-        else: ####################################
+    while s:
+        nx = []
+        if isinstance(flattened[0], Sequence):
+            for i in flattened:
+                if isinstance(i, Sequence):
+                    for a in i:
+                        nx.append(a)
+                else:
+                    nx.append(i)
+            flattened = nx
+        else:
+            s = False
           
     t = tensor(form=(0, 1), shape=(len(flattened)), data=flattened, flatten=False)
     t.variables = self.variables
