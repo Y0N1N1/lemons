@@ -115,6 +115,8 @@ class tensor:
         
     _rank()
         
+    transform(self, jacobian, inversejacobian)
+        transforms tensor
   """
   def __init__(self, empty=False, form=(0, 1), shape=(2), data=[1, 1], flatten=False, rgrad=False, **kwargs):
     """takes in form, shape and data to build the basis
@@ -1222,5 +1224,7 @@ class tensor:
     """prints the tensor in a pretty way
     """
     
-    
+  def transform(self, jacobian, inversejacobian):
+    """transforms tensor
+    """
   
