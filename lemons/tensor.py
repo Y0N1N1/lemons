@@ -1227,5 +1227,6 @@ class tensor:
   def transform(self, jacobian, inversejacobian):
     """transforms tensor
     """
-    
+    selfi = ((),())
+    return self(, selfi=selfi, )
   
