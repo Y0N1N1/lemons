@@ -160,7 +160,7 @@ class tensor:
       raise notshape("tensor with wrong shape")
     
       
-  def __call__(self, t:tensor, selfi, ti, **kwargs):    
+  def __call__(self, *args, **kwargs):    
     """takes in another tensor and indexes to create a new tensor
 
         Parameters
@@ -1227,4 +1227,5 @@ class tensor:
   def transform(self, jacobian, inversejacobian):
     """transforms tensor
     """
+    
   
