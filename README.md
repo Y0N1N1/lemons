@@ -11,13 +11,6 @@
 
 --
 
-### Lemons is dependencies free!
-
-no more 
-```bash
-pip install -r requirements.txt
-```
-
 ### Use
 for package installs you use:
 ```bash
