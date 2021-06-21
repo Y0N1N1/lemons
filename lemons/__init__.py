@@ -1,3 +1,3 @@
 from lemons.tensor import *
 from lemons.utils.math import *
-# lemons is dependencies free! 
+# lemons is not dependencies free! 
